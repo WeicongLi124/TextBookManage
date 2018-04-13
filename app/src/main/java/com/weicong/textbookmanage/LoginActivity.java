@@ -27,6 +27,7 @@ public class LoginActivity extends BaseActivity {
         return R.layout.login_activity;
     }
 
+
     @Override
     protected void initView() {
         setSteepStatusBar();
