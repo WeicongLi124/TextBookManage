@@ -24,6 +24,7 @@
             android:id="@+id/register_id_edt"
             android:textSize="16sp"
             android:maxLines="1"
+            android:inputType="number"
             android:singleLine="true"
             android:textColorHint="@color/login_hintColor"
             android:background="@drawable/login_border"
@@ -55,9 +56,45 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <EditText
+            android:id="@+id/register_psw_edt"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:maxLength="8"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColorHint="@color/login_hintColor"
+            android:background="@drawable/login_border"
+            android:textCursorDrawable="@drawable/edit_cursor"
+            android:paddingStart="60dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_width="280dp"
+            android:layout_height="45dp" />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_width="60dp"
+            android:layout_height="45dp">
+            <TextView
+                android:text="密码："
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp">
+        <EditText
             android:id="@+id/register_name_edt"
             android:textSize="16sp"
             android:maxLines="1"
+            android:maxLength="6"
+            android:inputType="text"
             android:singleLine="true"
             android:textColorHint="@color/login_hintColor"
             android:background="@drawable/login_border"
@@ -80,6 +117,8 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </RelativeLayout>
+
+
 
     <RelativeLayout
         android:layout_marginTop="10dp"

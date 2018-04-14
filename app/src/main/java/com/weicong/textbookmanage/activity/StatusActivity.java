@@ -1,4 +1,4 @@
-package com.weicong.textbookmanage;
+package com.weicong.textbookmanage.activity;
 
 
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 
 import com.weicong.frankutils124.base.BaseActivity;
+import com.weicong.textbookmanage.R;
 
 public class StatusActivity extends BaseActivity {
     private CardView studentCard;

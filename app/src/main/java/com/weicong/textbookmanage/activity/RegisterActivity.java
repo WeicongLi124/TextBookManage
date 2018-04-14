@@ -1,29 +1,34 @@
-package com.weicong.textbookmanage;
+package com.weicong.textbookmanage.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Message;
+import android.text.InputFilter;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.weicong.frankutils124.base.BaseActivity;
+import com.weicong.frankutils124.base.BaseHandler;
+import com.weicong.frankutils124.utils.ToastUtils;
+import com.weicong.textbookmanage.R;
 import com.weicong.textbookmanage.utils.UrlValue;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,34 +45,45 @@ import okhttp3.Response;
  * @author: Frank
  * @time: 2018/4/8 13:27
  * @e-mail: 912220261@qq.com
- * Function:
+ * Function: 用于登记注册身份信息
  */
 public class RegisterActivity extends BaseActivity {
     private String status = null;
-
+    /**
+     * 控件变量定义
+     */
     private LinearLayout registerll;
     private TextView titleTv;
     private TextView idTv;
     private RelativeLayout gradeRl;
     private EditText idEdt;
     private EditText nameEdt;
+    private EditText pswEdt;
     private RadioGroup sexRagroup;
     private RadioButton maleRabtn;
     private RadioButton femaleRabtn;
     private Spinner facultySp;
     private Spinner gradeSp;
     private TextView finishTv;
+    /**
+     * 保存页面数据
+     */
 
     private String facultyStr = null;
     private String gradeStr = null;
     private String sexStr = "男";
     private int facultyIndex;
+    /**
+     * spinner数组数据写死
+     */
     private String[] faculty = {"计算机工程学院","土木工程学院","管理学院","外国语学院"};
     private String[][] grade = {
             {"软件工程1班","软件工程2班","计算机与科学技术1班","信息技术与科学1班","网络工程1班","网络工程2班"},
             {"土木工程1班","土木工程2班","水利工程1班","水利工程2班"},
             {"会计学1班","会计学2班","工商管理1班","市场营销1班"},
             {"英语专业1班","英语专业2班","日语专业1班","日语专业2班"}};
+    private MyHandler handler = new MyHandler(this);
+
     @Override
     protected int setLayout() {
         return R.layout.register_activity;
@@ -81,6 +97,7 @@ public class RegisterActivity extends BaseActivity {
         gradeRl = findViewById(R.id.register_grade_rl);
         idEdt = findViewById(R.id.register_id_edt);
         nameEdt = findViewById(R.id.register_name_edt);
+        pswEdt = findViewById(R.id.register_psw_edt);
         sexRagroup = findViewById(R.id.register_sex_rg);
         maleRabtn = findViewById(R.id.radio_male);
         femaleRabtn = findViewById(R.id.radio_female);
@@ -95,9 +112,11 @@ public class RegisterActivity extends BaseActivity {
         }
         if (status.equals("学生")){
             idTv.setText("学号：");
+            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
             gradeRl.setVisibility(View.VISIBLE);
         }else if (status.equals("教师")){
             idTv.setText("工号：");
+            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
             gradeRl.setVisibility(View.GONE);
         }
         titleTv.setText(status+"登记");
@@ -160,8 +179,10 @@ public class RegisterActivity extends BaseActivity {
         finishTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.i("registerTeacher",idEdt.getText()+" "+nameEdt.getText()+" "+sexStr+" "+facultyStr+" "+gradeStr);
-                register();
+                registerll.requestFocus();
+                if (idEdt.getText().toString().trim().equals("")||nameEdt.toString().trim().equals("")||pswEdt.toString().trim().equals("")){
+                    ToastUtils.show(RegisterActivity.this,"不可为空",Toast.LENGTH_LONG);
+                }else register();
             }
         });
     }
@@ -173,6 +194,7 @@ public class RegisterActivity extends BaseActivity {
         Map<String,Object> map = new HashMap<>();
         map.put("status",status);
         map.put("id",idEdt.getText().toString());
+        map.put("psw",pswEdt.getText().toString());
         map.put("name",nameEdt.getText().toString());
         map.put("sex",sexStr);
         map.put("dept",facultyStr);
@@ -181,19 +203,57 @@ public class RegisterActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.REGISTER_TEACHER)
+                .url(UrlValue.REGISTER)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.i("onFailure","Error:"+e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.i("onResponse",response.body().string());
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    String msg = jsonObject.getString("msg");
+                    Message message = new Message();
+                    if (msg.equals("ok")){
+                        message.what = UrlValue.MSG_OK;
+                    }else {
+                        message.what = UrlValue.MSG_ERROR;
+                    }
+                    handler.sendMessage(message);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
+    }
+
+    /**
+     * 开启线程处理登记成功与否
+     */
+
+    private class MyHandler extends BaseHandler{
+
+        MyHandler(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        public void handleMessage(Message message, int what) {
+            switch (what){
+                case UrlValue.MSG_OK:
+                    ToastUtils.show(RegisterActivity.this,"登记成功！", Toast.LENGTH_LONG);
+                    finish();
+                    break;
+                case UrlValue.MSG_ERROR:
+                    if (status.equals("教师"))
+                        ToastUtils.show(RegisterActivity.this,"登记失败，工号可能已存在！", Toast.LENGTH_LONG);
+                    else
+                        ToastUtils.show(RegisterActivity.this,"登记失败，学号可能已存在！", Toast.LENGTH_LONG);
+                    break;
+            }
+        }
     }
 }

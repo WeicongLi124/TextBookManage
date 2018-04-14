@@ -33,7 +33,7 @@ public abstract class BaseHandler extends Handler {
 
     @Override
     public void handleMessage(Message msg) {
-        if (activityWeakReference == null || activityWeakReference.get() == null || activityWeakReference.get().isFinishing()) {
+        /*if (activityWeakReference == null || activityWeakReference.get() == null || activityWeakReference.get().isFinishing()) {
             //当activity目前不可用时进行提醒
             Log.e("BaseHandler","This activity is not disable now.");
         } else if (fragmentWeakReference == null || fragmentWeakReference.get() == null || fragmentWeakReference.get().isRemoving()) {
@@ -42,6 +42,11 @@ public abstract class BaseHandler extends Handler {
         } else {
             //正常状态接收消息
             handleMessage(msg, msg.what);
+        }*/
+        if (activityWeakReference != null || fragmentWeakReference != null){
+            handleMessage(msg, msg.what);
+        }else {
+            Log.e("BaseHandler","This activity or fragment is not disable now.");
         }
     }
 
