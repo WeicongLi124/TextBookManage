@@ -16,4 +16,8 @@ public class UrlValue {
     public static String REGISTER = SERVICE + "register";
 
     public static String LOGIN = SERVICE + "login";
+
+    public static String GET_COURSE_LIST = SERVICE + "getCourseList";
+
+    public static String INSERT_COURSE = SERVICE + "insertCourse";
 }

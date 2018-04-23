@@ -6,4 +6,6 @@
 
     <color name="login_hintColor">#bebebe</color>
     <color name="mainColor">#7c5858</color>
+    <color name="bg_press">#67a7a7a7</color>
+    <color name="bg_pressed">#77ffffff</color>
 </resources>

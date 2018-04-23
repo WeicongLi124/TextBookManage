@@ -2,7 +2,6 @@ package com.weicong.textbookmanage.activity;
 
 import android.app.Activity;
 import android.os.Message;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -16,7 +15,6 @@ import com.google.gson.Gson;
 import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
-import com.weicong.textbookmanage.R;
 import com.weicong.textbookmanage.utils.UrlValue;
 
 import org.json.JSONException;

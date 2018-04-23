@@ -1,19 +1,15 @@
 package com.weicong.textbookmanage.activity;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Message;
-import android.text.InputFilter;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,117 +38,92 @@ import okhttp3.Response;
 
 /**
  * @author: Frank
- * @time: 2018/4/8 13:27
+ * @time: 2018/4/22 12:02
  * @e-mail: 912220261@qq.com
- * Function: 用于登记注册身份信息
+ * Function:
  */
-public class RegisterActivity extends BaseActivity {
-    private String status = null;
-    /**
-     * 控件变量定义
-     */
-    private LinearLayout registerll;
-    private TextView titleTv;
-    private TextView idTv;
-    private RelativeLayout gradeRl;
-    private EditText idEdt;
-    private EditText nameEdt;
-    private EditText pswEdt;
-    private RadioGroup sexRagroup;
-    private RadioButton maleRabtn;
-    private RadioButton femaleRabtn;
+public class CourseAddActivity extends BaseActivity {
+    private LinearLayout addLl;
+    private RadioGroup typeRagroup;
+    private RadioButton requireRabtn;
+    private RadioButton electRabtn;
+    private Spinner courseNameSp;
     private Spinner facultySp;
     private Spinner gradeSp;
+    private TextView creditTv;
     private TextView finishTv;
-    /**
-     * 保存页面数据
-     */
 
-    private String facultyStr = null;
-    private String gradeStr = null;
-    private String sexStr = "男";
-    private int facultyIndex;
-    /**
-     * spinner数组数据写死
-     */
     private String[] faculty = {"计算机工程学院","土木工程学院","管理学院","外国语学院"};
     private String[][] grade = {
             {"软件工程1班","软件工程2班","计算机与科学技术1班","信息技术与科学1班","网络工程1班","网络工程2班"},
             {"土木工程1班","土木工程2班","水利工程1班","水利工程2班"},
             {"会计学1班","会计学2班","工商管理1班","市场营销1班"},
             {"英语专业1班","英语专业2班","日语专业1班","日语专业2班"}};
+    private String[] courseNameList = {"高等数学(上)","高等数学(下)","离散数学","线性代数","概率论","大学英语",
+            "计算机英语","马克思主义哲学","C语言程序设计","PS设计基础","基础日语"};
+    private int[] creditList = {4,4,3,3,3,4,4,4,4,2,2};
+    private String[] courseIdList = {"01","02","03","04","05","06","07","08","09","10","11"};
+    private String facultyStr = null;
+    private String gradeStr = null;
+    private String typeStr = "主修";
+    private String courseName = courseNameList[0];
+    private String courseId = courseIdList[0];
+    private int credit = creditList[0];
+    private int facultyIndex;
+
     private MyHandler handler = new MyHandler(this);
 
     @Override
     protected int setLayout() {
-        return R.layout.register_activity;
+        return R.layout.course_add_activity;
     }
 
     @Override
     protected void initView() {
-        registerll = findViewById(R.id.register_ll);
-        titleTv = findViewById(R.id.register_title_tv);
-        idTv = findViewById(R.id.register_id_tv);
-        gradeRl = findViewById(R.id.register_grade_rl);
-        idEdt = findViewById(R.id.register_id_edt);
-        nameEdt = findViewById(R.id.register_name_edt);
-        pswEdt = findViewById(R.id.register_psw_edt);
-        sexRagroup = findViewById(R.id.register_sex_rg);
-        maleRabtn = findViewById(R.id.radio_male);
-        femaleRabtn = findViewById(R.id.radio_female);
-        facultySp = findViewById(R.id.register_faculty_sp);
-        gradeSp = findViewById(R.id.register_grade_sp);
-        finishTv = findViewById(R.id.register_finish_btn);
-        //获取上个页面传来的身份信息
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        if (null != bundle) {
-            status = bundle.getString("status");
-        }
-        if (status.equals("学生")){
-            idTv.setText("学号：");
-            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
-            gradeRl.setVisibility(View.VISIBLE);
-        }else if (status.equals("教师")){
-            idTv.setText("工号：");
-            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
-            gradeRl.setVisibility(View.GONE);
-        }
-        titleTv.setText(status+"登记");
+        addLl = findViewById(R.id.course_add_ll);
+        courseNameSp = findViewById(R.id.course_add_name_sp);
+        typeRagroup = findViewById(R.id.course_add_type_rg);
+        requireRabtn = findViewById(R.id.course_radio_require);
+        electRabtn = findViewById(R.id.course_radio_elect);
+        facultySp = findViewById(R.id.course_add_faculty_sp);
+        gradeSp = findViewById(R.id.course_add_grade_sp);
+        creditTv = findViewById(R.id.course_add_credit_tv);
+        finishTv = findViewById(R.id.course_add_finish_btn);
+
+        courseNameSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(courseNameList)));
         facultySp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(faculty)));
         gradeSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[0])));
     }
 
     @Override
     protected void initListener() {
-        //外层布局触摸监听
-        registerll.setOnTouchListener(new View.OnTouchListener() {
+        addLl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                registerll.requestFocus();
+                addLl.requestFocus();
                 hideSoftInput();
                 return false;
             }
         });
-        //性别选择监听
-        sexRagroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        courseNameSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (group.getCheckedRadioButtonId()){
-                    case R.id.radio_male:
-                        sexStr = maleRabtn.getText().toString();
-                        break;
-                    case R.id.radio_female:
-                        sexStr = femaleRabtn.getText().toString();
-                        break;
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                creditTv.setText(creditList[position]+"分");
+                courseName = courseNameList[position];
+                credit = creditList[position];
+                courseId = courseIdList[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         //院系选择监听
         facultySp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gradeSp.setAdapter(new ArrayAdapter(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[position])));
+                gradeSp.setAdapter(new ArrayAdapter(CourseAddActivity.this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[position])));
                 facultyIndex = position;
                 facultyStr = faculty[position];
             }
@@ -174,49 +145,60 @@ public class RegisterActivity extends BaseActivity {
 
             }
         });
-        //完成按钮监听
+        //课程类型选择
+        typeRagroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (group.getCheckedRadioButtonId()){
+                    case R.id.course_radio_require:
+                        typeStr = requireRabtn.getText().toString();
+                        break;
+                    case R.id.course_radio_elect:
+                        typeStr = electRabtn.getText().toString();
+                        break;
+                }
+            }
+        });
         finishTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerll.requestFocus();
-                if (idEdt.getText().toString().trim().equals("")||nameEdt.toString().trim().equals("")||pswEdt.toString().trim().equals("")){
-                    ToastUtils.show(RegisterActivity.this,"不可为空",Toast.LENGTH_LONG);
-                }else register();
+                insertCourse();
             }
         });
     }
 
     /**
-     * 对接登记接口
+     * 对接插入课程信息的接口
      */
-    private void register(){
-        Map<String,Object> map = new HashMap<>();
-        map.put("status",status);
-        map.put("id",idEdt.getText().toString());
-        map.put("psw",pswEdt.getText().toString());
-        map.put("name",nameEdt.getText().toString());
-        map.put("sex",sexStr);
-        map.put("dept",facultyStr);
+    private void insertCourse(){
+        Map<Object,Object> map = new HashMap<>();
+        map.put("courseId",courseId);
+        map.put("courseName",courseName);
+        map.put("teacherId","1001001");
         map.put("grade",gradeStr);
+        map.put("type",typeStr);
+        map.put("credit",credit);
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(UrlValue.REGISTER)
+        final Request request = new Request.Builder()
+                .url(UrlValue.INSERT_COURSE)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                JSONObject jsonObject = null;
                 try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    jsonObject = new JSONObject(response.body().string());
                     String msg = jsonObject.getString("msg");
                     Message message = new Message();
-                    if (msg.equals("ok")){
+                    if (msg.equals("ok")) {
                         message.what = UrlValue.MSG_OK;
                     }else {
                         message.what = UrlValue.MSG_ERROR;
@@ -225,17 +207,14 @@ public class RegisterActivity extends BaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         });
     }
 
-    /**
-     * 开启线程处理登记成功与否
-     */
-
     private class MyHandler extends BaseHandler{
 
-        MyHandler(Activity activity) {
+        public MyHandler(Activity activity) {
             super(activity);
         }
 
@@ -243,16 +222,14 @@ public class RegisterActivity extends BaseActivity {
         public void handleMessage(Message message, int what) {
             switch (what){
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(RegisterActivity.this,"登记成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(CourseAddActivity.this,"录入成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    if (status.equals("教师"))
-                        ToastUtils.show(RegisterActivity.this,"登记失败，工号可能已存在！", Toast.LENGTH_LONG);
-                    else
-                        ToastUtils.show(RegisterActivity.this,"登记失败，学号可能已存在！", Toast.LENGTH_LONG);
+                    ToastUtils.show(CourseAddActivity.this,"错误，请检查班级或类型", Toast.LENGTH_LONG);
                     break;
             }
+
         }
     }
 }
