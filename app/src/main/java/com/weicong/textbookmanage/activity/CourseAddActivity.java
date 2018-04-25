@@ -2,7 +2,6 @@ package com.weicong.textbookmanage.activity;
 
 import android.app.Activity;
 import android.os.Message;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,7 +54,7 @@ public class CourseAddActivity extends BaseActivity {
 
     private String[] faculty = {"计算机工程学院","土木工程学院","管理学院","外国语学院"};
     private String[][] grade = {
-            {"软件工程1班","软件工程2班","计算机与科学技术1班","信息技术与科学1班","网络工程1班","网络工程2班"},
+            {"软件工程1班","软件工程2班","计科1班","信科1班","网络工程1班","网络工程2班"},
             {"土木工程1班","土木工程2班","水利工程1班","水利工程2班"},
             {"会计学1班","会计学2班","工商管理1班","市场营销1班"},
             {"英语专业1班","英语专业2班","日语专业1班","日语专业2班"}};
@@ -65,7 +64,7 @@ public class CourseAddActivity extends BaseActivity {
     private String[] courseIdList = {"01","02","03","04","05","06","07","08","09","10","11"};
     private String facultyStr = null;
     private String gradeStr = null;
-    private String typeStr = "主修";
+    private String typeStr = "必修";
     private String courseName = courseNameList[0];
     private String courseId = courseIdList[0];
     private int credit = creditList[0];

@@ -7,8 +7,8 @@ package com.weicong.textbookmanage.utils;
  * Function: 服务器url等
  */
 public class UrlValue {
-    public static final int MSG_OK = 0;
-    public static final int MSG_ERROR = 1;
+    public static final int MSG_OK = 1;
+    public static final int MSG_ERROR = 0;
     public static String ENCODING = "application/json; charset=utf-8";
 
     private static String SERVICE = "http://10.11.3.209:8080/";
@@ -20,4 +20,6 @@ public class UrlValue {
     public static String GET_COURSE_LIST = SERVICE + "getCourseList";
 
     public static String INSERT_COURSE = SERVICE + "insertCourse";
+
+    public static String SEARCH_COURSE = SERVICE + "searchCourse";
 }

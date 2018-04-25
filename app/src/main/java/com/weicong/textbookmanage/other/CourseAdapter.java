@@ -1,6 +1,8 @@
 package com.weicong.textbookmanage.other;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +60,9 @@ public class CourseAdapter extends BaseAdapter {
         viewHolder.nameTv.setText(courseBeanList.get(position).getCourseName());
         viewHolder.teacherTv.setText(courseBeanList.get(position).getTeacherName());
         viewHolder.typeTv.setText(courseBeanList.get(position).getType());
+        if (courseBeanList.get(position).getType().equals("必修")){
+            viewHolder.typeTv.setTextColor(Color.parseColor("#ff0000"));
+        }else viewHolder.typeTv.setTextColor(Color.parseColor("#1692f1"));
         viewHolder.gradeTv.setText(courseBeanList.get(position).getGrade());
         return convertView;
     }
