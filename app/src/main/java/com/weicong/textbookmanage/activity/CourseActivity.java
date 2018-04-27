@@ -62,7 +62,7 @@ public class CourseActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        courseLv = findViewById(R.id.course_content_list);
+        courseLv = findViewById(R.id.course_lv);
         courseLv.setDividerHeight(0);
         addBtn = findViewById(R.id.course_add_btn);
         searchEdt = findViewById(R.id.course_search_edt);
@@ -194,7 +194,6 @@ public class CourseActivity extends BaseActivity {
             switch (what){
                 case UrlValue.MSG_ERROR:
                     ToastUtils.show(CourseActivity.this,"操作失败！", Toast.LENGTH_LONG);
-                    finish();
                     break;
                 case GET_LIST:
                     courseAdapter = new CourseAdapter(CourseActivity.this,courseBeanList);

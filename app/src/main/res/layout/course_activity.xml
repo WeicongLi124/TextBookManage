@@ -35,7 +35,7 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/course_content_list"
+        android:id="@+id/course_lv"
         tools:listitem="@layout/course_item"
         android:listSelector="@android:color/transparent"
         android:layout_width="match_parent"

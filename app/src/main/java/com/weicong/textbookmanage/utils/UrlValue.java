@@ -22,4 +22,8 @@ public class UrlValue {
     public static String INSERT_COURSE = SERVICE + "insertCourse";
 
     public static String SEARCH_COURSE = SERVICE + "searchCourse";
+
+    public static String INSERT_BOOK = SERVICE + "insertBook";
+
+    public static String GET_BOOK_LIST = SERVICE + "getBookList";
 }
