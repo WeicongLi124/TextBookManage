@@ -25,6 +25,7 @@
             android:id="@+id/book_add_isbn_edt"
             android:textSize="16sp"
             android:maxLines="1"
+            android:maxLength="13"
             android:inputType="text"
             android:background="@drawable/login_border"
             android:paddingStart="60dp"

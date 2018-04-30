@@ -32,6 +32,7 @@
         <activity android:name=".CourseAddActivity"/>
         <activity android:name=".BookAddActivity"/>
         <activity android:name=".BookDetailActivity"/>
+        <activity android:name=".OrderAddActivity"/>
     </application>
 
 </manifest>
