@@ -1,6 +1,7 @@
 package com.weicong.textbookmanage.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
@@ -76,7 +77,9 @@ public class BookActivity extends BaseActivity {
         bookLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(BookActivity.this, BookDetailActivity.class);
+                intent.putExtra("bookBean", bookBeanList.get(position));
+                startActivity(intent);
             }
         });
         bookLv.setOnTouchListener(new View.OnTouchListener() {
@@ -101,6 +104,10 @@ public class BookActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 获取教材列表
+     * @param searchText
+     */
     private void getBookList(String searchText){
         Map<Object,Object> map = new HashMap<>();
         map.put("keywords",searchText);
@@ -135,6 +142,12 @@ public class BookActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getBookList(searchEdt.getText().toString());
     }
 
     private class MyHandler extends BaseHandler{

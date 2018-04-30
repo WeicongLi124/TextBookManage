@@ -1,24 +1,26 @@
 package com.weicong.textbookmanage.model;
 
+import java.io.Serializable;
+
 /**
  * @author: Frank
  * @time: 2018/4/27 19:36
  * @e-mail: 912220261@qq.com
  * Function:
  */
-public class BookBean {
-    private String bookIsbn;
+public class BookBean implements Serializable {
+    private String bookISBN;
     private String bookName;
     private String bookPress;
     private String bookAuthor;
     private double bookPrice;
 
-    public String getBookIsbn() {
-        return bookIsbn;
+    public String getBookISBN() {
+        return bookISBN;
     }
 
-    public void setBookIsbn(String bookIsbn) {
-        this.bookIsbn = bookIsbn;
+    public void setBookISBN(String bookISBN) {
+        this.bookISBN = bookISBN;
     }
 
     public String getBookName() {
