@@ -49,13 +49,13 @@ public class OrderAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.order_item,parent,false);
             viewHolder.bookTv = convertView.findViewById(R.id.order_book_tv);
             viewHolder.courseTv = convertView.findViewById(R.id.order_course_tv);
-            viewHolder.teacherTv = convertView.findViewById(R.id.course_teacher_tv);
+            viewHolder.teacherTv = convertView.findViewById(R.id.order_teacher_tv);
             viewHolder.gradeTv = convertView.findViewById(R.id.order_grade_tv);
             viewHolder.numbersTv = convertView.findViewById(R.id.order_numbers_tv);
             viewHolder.totalTv = convertView.findViewById(R.id.order_total_tv);
             convertView.setTag(viewHolder);
         }else viewHolder = (ViewHolder) convertView.getTag();
-        viewHolder.bookTv.setText(orderBeanList.get(position).getBookName());
+        viewHolder.bookTv.setText("《"+orderBeanList.get(position).getBookName()+"》");
         viewHolder.courseTv.setText(orderBeanList.get(position).getCourseName());
         viewHolder.teacherTv.setText(orderBeanList.get(position).getTeacherName());
         viewHolder.gradeTv.setText(orderBeanList.get(position).getGrade());

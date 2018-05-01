@@ -16,13 +16,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:text="教材："
+                android:text="课程："
                 android:textSize="20sp"
                 android:textColor="@color/mainColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/order_book_tv"
+                android:id="@+id/order_course_tv"
                 android:text="《软件工程》"
                 android:textSize="20sp"
                 android:textColor="@color/mainColor"
@@ -35,13 +35,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:text="课程："
+                android:text="教材："
                 android:textSize="16sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/order_course_tv"
+                android:id="@+id/order_book_tv"
                 android:text="《软件工程》"
                 android:textSize="16sp"
                 android:textColor="#000000"

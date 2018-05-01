@@ -118,7 +118,6 @@ public class BookAddActivity extends BaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }

@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.utils.UrlValue;
 
 import org.json.JSONException;
@@ -94,9 +95,6 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 jumpToActivity(LoginActivity.this,StatusActivity.class);
-                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    startActivity(new Intent(LoginActivity.this,StatusActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
-                }else jumpToActivity(LoginActivity.this,StatusActivity.class);*/
             }
         });
         //身份单选监听
@@ -151,6 +149,10 @@ public class LoginActivity extends BaseActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     String msg = jsonObject.getString("msg");
+                    User.USER_ID = jsonObject.getString("id");
+                    User.USER_NAME = jsonObject.getString("name");
+                    User.USER_STATUS = status;
+                    if (status.equals("学生")) User.USER_GRADE = jsonObject.getString("grade");
                     Message message = new Message();
                     if (msg.equals("ok")){
                         message.what = UrlValue.MSG_OK;

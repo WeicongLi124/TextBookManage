@@ -62,8 +62,7 @@ public class CourseAddActivity extends BaseActivity {
             "计算机英语","马克思主义哲学","C语言程序设计","PS设计基础","基础日语"};
     private int[] creditList = {4,4,3,3,3,4,4,4,4,2,2};
     private String[] courseIdList = {"01","02","03","04","05","06","07","08","09","10","11"};
-    private String facultyStr = null;
-    private String gradeStr = null;
+    private String gradeStr = grade[0][0];
     private String typeStr = "必修";
     private String courseName = courseNameList[0];
     private String courseId = courseIdList[0];
@@ -124,7 +123,6 @@ public class CourseAddActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 gradeSp.setAdapter(new ArrayAdapter(CourseAddActivity.this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[position])));
                 facultyIndex = position;
-                facultyStr = faculty[position];
             }
 
             @Override

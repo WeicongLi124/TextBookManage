@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity"
+        <activity android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
         </activity>
         <activity android:name=".StatusActivity"/>
         <activity android:name=".RegisterActivity"/>
-        <!--<activity android:name=".activity.MainActivity"/>-->
+        <activity android:name=".MainActivity"/>
         <activity android:name=".CourseActivity"/>
         <activity android:name=".BookActivity"/>
         <activity android:name=".OrderActivity"/>

@@ -57,4 +57,14 @@ public class UrlValue {
      * 修改教材数据
      */
     public static String UPDATE_BOOK = SERVICE + "updateBook";
+
+    /**
+     * 获取订单列表
+     */
+    public static String GET_ORDER_LIST = SERVICE + "getOrderList";
+
+    /**
+     * 订单录入
+     */
+    public static String INSERT_ORDER = SERVICE + "insertOrder";
 }

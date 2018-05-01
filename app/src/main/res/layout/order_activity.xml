@@ -17,10 +17,10 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/order_search_edt"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_toStartOf="@id/order_search_btn"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@id/course_search_btn" />
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
         <Button
             android:id="@+id/order_search_btn"
