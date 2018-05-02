@@ -17,6 +17,7 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/course_search_edt"
+            android:hint="输入课程名称"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"

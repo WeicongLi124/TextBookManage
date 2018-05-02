@@ -20,6 +20,7 @@ import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
 import com.weicong.textbookmanage.model.BookBean;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.utils.UrlValue;
 
 import org.json.JSONException;
@@ -50,7 +51,7 @@ public class OrderAddActivity extends BaseActivity {
     private LinearLayout orderLl;
     private Spinner bookSp;
     private Spinner courseSp;
-    private EditText teacherEdt;
+    private TextView teacherTv;
     private Spinner facultySp;
     private Spinner gradeSp;
     private EditText numbersEdt;
@@ -88,7 +89,7 @@ public class OrderAddActivity extends BaseActivity {
         orderLl = findViewById(R.id.order_add_ll);
         bookSp = findViewById(R.id.order_add_book_sp);
         courseSp = findViewById(R.id.order_add_course_sp);
-        teacherEdt = findViewById(R.id.order_add_teacher_edt);
+        teacherTv = findViewById(R.id.order_add_teacher_tv);
         facultySp = findViewById(R.id.order_add_faculty_sp);
         gradeSp = findViewById(R.id.order_add_grade_sp);
         numbersEdt = findViewById(R.id.order_add_numbers_edt);
@@ -96,6 +97,7 @@ public class OrderAddActivity extends BaseActivity {
         totalTv = findViewById(R.id.order_add_total_edt);
         submitBtn = findViewById(R.id.order_add_submit_btn);
 
+        teacherTv.setText(User.USER_NAME);
         totalTv.setText(total+"¥");
         courseSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(courseNameList)));
         facultySp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(faculty)));

@@ -17,6 +17,7 @@ import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
 import com.weicong.textbookmanage.model.BookBean;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.utils.UrlValue;
 
 import org.json.JSONException;
@@ -76,6 +77,14 @@ public class BookDetailActivity extends BaseActivity {
         priceEdt.setText(bookBean.getBookPrice()+"");
         saveBtn = findViewById(R.id.book_detail_save_btn);
         deleteBtn = findViewById(R.id.book_detail_delete_btn);
+        if (User.USER_STATUS.equals("学生")){
+            nameEdt.setEnabled(false);
+            pressEdt.setEnabled(false);
+            authorEdt.setEnabled(false);
+            priceEdt.setEnabled(false);
+            saveBtn.setVisibility(View.GONE);
+            deleteBtn.setVisibility(View.GONE);
+        }
     }
 
     @Override

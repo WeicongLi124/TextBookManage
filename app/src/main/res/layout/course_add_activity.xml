@@ -19,11 +19,11 @@
     <RelativeLayout
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/course_add_name_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
@@ -53,7 +53,6 @@
             android:id="@+id/course_add_credit_tv"
             android:textSize="16sp"
             android:textColor="#ff0000"
-            android:background="@drawable/login_border"
             android:paddingStart="60dp"
             android:paddingEnd="10dp"
             android:paddingTop="12dp"
@@ -76,11 +75,11 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/course_add_faculty_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
@@ -105,11 +104,11 @@
         android:id="@+id/course_add_grade_rl"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/course_add_grade_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"

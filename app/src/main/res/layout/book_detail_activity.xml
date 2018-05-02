@@ -24,6 +24,7 @@
         <TextView
             android:id="@+id/book_detail_isbn_tv"
             android:textSize="16sp"
+            android:textColor="#000000"
             android:maxLines="1"
             android:inputType="text"
             android:paddingStart="60dp"
@@ -54,6 +55,7 @@
         <EditText
             android:id="@+id/book_detail_name_edt"
             android:textSize="16sp"
+            android:textColor="#000000"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
@@ -85,6 +87,7 @@
         <EditText
             android:id="@+id/book_detail_press_edt"
             android:textSize="16sp"
+            android:textColor="#000000"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
@@ -117,6 +120,7 @@
         <EditText
             android:id="@+id/book_detail_author_edt"
             android:textSize="16sp"
+            android:textColor="#000000"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
@@ -148,6 +152,7 @@
         <EditText
             android:id="@+id/book_detail_price_edt"
             android:textSize="16sp"
+            android:textColor="#000000"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"

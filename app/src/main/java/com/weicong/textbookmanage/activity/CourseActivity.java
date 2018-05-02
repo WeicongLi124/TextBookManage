@@ -20,6 +20,7 @@ import com.weicong.frankutils124.base.BaseHandler;
 
 import com.weicong.frankutils124.utils.ToastUtils;
 import com.weicong.textbookmanage.model.CourseBean;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.other.CourseAdapter;
 import com.weicong.textbookmanage.utils.UrlValue;
 
@@ -67,6 +68,9 @@ public class CourseActivity extends BaseActivity {
         addBtn = findViewById(R.id.course_add_btn);
         searchEdt = findViewById(R.id.course_search_edt);
         searchBtn = findViewById(R.id.course_search_btn);
+        if (User.USER_STATUS.equals("学生")){
+            addBtn.setVisibility(View.GONE);
+        }
         getList();
     }
 

@@ -19,11 +19,11 @@
     <RelativeLayout
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/order_add_book_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
@@ -48,11 +48,11 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/order_add_course_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
@@ -79,12 +79,10 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
-        <EditText
-            android:id="@+id/order_add_teacher_edt"
+        <TextView
+            android:id="@+id/order_add_teacher_tv"
             android:textSize="16sp"
             android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/login_border"
             android:paddingStart="60dp"
             android:paddingEnd="10dp"
             android:paddingTop="12dp"
@@ -108,11 +106,11 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/order_add_faculty_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
@@ -137,11 +135,12 @@
     <RelativeLayout
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:background="@drawable/login_border"
+
         android:layout_width="wrap_content"
         android:layout_height="45dp">
         <Spinner
             android:id="@+id/order_add_grade_sp"
-            android:background="@drawable/login_border"
             android:popupBackground="#ffffff"
             android:paddingStart="50dp"
             android:paddingEnd="10dp"
@@ -171,6 +170,7 @@
         <EditText
             android:id="@+id/order_add_numbers_edt"
             android:textSize="16sp"
+            android:hint="请输入征订数量"
             android:maxLines="1"
             android:inputType="number"
             android:background="@drawable/login_border"
@@ -262,7 +262,6 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/order_add_submit_btn"

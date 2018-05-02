@@ -18,6 +18,7 @@ import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
 import com.weicong.textbookmanage.model.BookBean;
 import com.weicong.textbookmanage.model.OrderBean;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.other.BookAdapter;
 import com.weicong.textbookmanage.other.OrderAdapter;
 import com.weicong.textbookmanage.utils.UrlValue;
@@ -66,6 +67,9 @@ public class OrderActivity extends BaseActivity {
         orderLv = findViewById(R.id.order_lv);
         orderLv.setDividerHeight(0);
         addBtn = findViewById(R.id.order_add_btn);
+        if (User.USER_STATUS.equals("学生")){
+            addBtn.setVisibility(View.GONE);
+        }
         getOrder("");
     }
 
@@ -88,7 +92,7 @@ public class OrderActivity extends BaseActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getOrder(searchEdt.getText().toString());
             }
         });
     }
@@ -117,7 +121,6 @@ public class OrderActivity extends BaseActivity {
                     orderBeanList = new ArrayList<>();
                     orderBeanList = gson1.fromJson(jsonObject.getString("list"),
                             new TypeToken<List<OrderBean>>(){}.getType());
-                    Log.i("onResponse",orderBeanList.get(0).getTeacherName());
                     Message message = new Message();
                     if (jsonObject.getString("msg").equals("ok"))
                         message.what = UrlValue.MSG_OK;

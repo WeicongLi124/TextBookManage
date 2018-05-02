@@ -2,6 +2,7 @@ package com.weicong.textbookmanage.activity;
 
 import android.app.Activity;
 import android.os.Message;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -148,6 +149,7 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
+                    Log.i("onResponse",jsonObject.toString());
                     String msg = jsonObject.getString("msg");
                     User.USER_ID = jsonObject.getString("id");
                     User.USER_NAME = jsonObject.getString("name");

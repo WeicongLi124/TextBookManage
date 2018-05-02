@@ -24,6 +24,7 @@
         <EditText
             android:id="@+id/book_add_isbn_edt"
             android:textSize="16sp"
+            android:hint="请输入ISBN号"
             android:maxLines="1"
             android:maxLength="13"
             android:inputType="text"
@@ -56,6 +57,7 @@
         <EditText
             android:id="@+id/book_add_name_edt"
             android:textSize="16sp"
+            android:hint="请输入书名"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
@@ -87,6 +89,7 @@
         <EditText
             android:id="@+id/book_add_press_edt"
             android:textSize="16sp"
+            android:hint="请输入出版社"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
@@ -119,6 +122,7 @@
         <EditText
             android:id="@+id/book_add_author_edt"
             android:textSize="16sp"
+            android:hint="请输入作者名"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
@@ -150,6 +154,7 @@
         <EditText
             android:id="@+id/book_add_price_edt"
             android:textSize="16sp"
+            android:hint="请输入书的单价"
             android:maxLines="1"
             android:inputType="text"
             android:background="@drawable/login_border"
