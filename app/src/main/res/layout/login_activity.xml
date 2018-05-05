@@ -6,6 +6,29 @@
     android:background="@mipmap/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/register_ll"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/btn_bg"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="100dp"
+        android:layout_height="40dp">
+        <TextView
+            android:text="信息登记"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@mipmap/arrow"
+            android:layout_marginStart="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
     <android.support.v7.widget.CardView
         app:cardCornerRadius="5dp"
         app:cardElevation="0dp"
@@ -33,14 +56,7 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/register_tv"
-                    android:text="信息登记"
-                    android:textColor="@color/mainColor"
-                    android:layout_gravity="end"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+
                 <RelativeLayout
                     android:id="@+id/userName_rl"
                     android:orientation="horizontal"
@@ -135,18 +151,24 @@
                     </RadioGroup>
                 </RelativeLayout>
             </LinearLayout>
-            <TextView
-                android:id="@+id/login_login_tv"
-                android:text="登陆"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:focusable="true"
-                android:clickable="true"
-                android:background="@drawable/btn_bg"
+            <RelativeLayout
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="-40dp"
-                android:layout_width="80dp"
-                android:layout_height="40dp" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp" >
+                <TextView
+                    android:id="@+id/login_login_tv"
+                    android:text="登陆"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="@drawable/btn_bg"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp" />
+
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

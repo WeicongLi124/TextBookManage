@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.utils.UrlValue;
 
 import org.json.JSONException;
@@ -171,7 +172,7 @@ public class CourseAddActivity extends BaseActivity {
         Map<Object,Object> map = new HashMap<>();
         map.put("courseId",courseId);
         map.put("courseName",courseName);
-        map.put("teacherId","1001001");
+        map.put("teacherId", User.USER_ID);
         map.put("grade",gradeStr);
         map.put("type",typeStr);
         map.put("credit",credit);

@@ -37,7 +37,7 @@
             <TextView
                 android:text="教师："
                 android:textSize="15sp"
-                android:textColor="#000000"
+                android:textColor="#52b1ec"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp" />
@@ -60,13 +60,13 @@
                 android:id="@+id/course_teacher_tv"
                 android:text="付老师"
                 android:textSize="15sp"
-                android:textColor="#000000"
+                android:textColor="#52b1ec"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp" />
         </LinearLayout>
         <LinearLayout
-            android:gravity="end"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout

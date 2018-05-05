@@ -64,10 +64,10 @@ public class RegisterActivity extends BaseActivity {
     private Spinner facultySp;
     private Spinner gradeSp;
     private TextView finishTv;
+
     /**
      * 保存页面数据
      */
-
     private String facultyStr = null;
     private String gradeStr = null;
     private String sexStr = "男";
@@ -82,6 +82,7 @@ public class RegisterActivity extends BaseActivity {
             {"会计学1班","会计学2班","工商管理1班","市场营销1班"},
             {"英语专业1班","英语专业2班","日语专业1班","日语专业2班"}};
     private MyHandler handler = new MyHandler(this);
+    private String message;
 
     @Override
     protected int setLayout() {
@@ -111,11 +112,13 @@ public class RegisterActivity extends BaseActivity {
         }
         if (status.equals("学生")){
             idTv.setText("学号：");
-            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
+            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+            idEdt.setHint("请输入学号");
             gradeRl.setVisibility(View.VISIBLE);
         }else if (status.equals("教师")){
             idTv.setText("工号：");
-            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+            idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(7)});
+            idEdt.setHint("请输入工号");
             gradeRl.setVisibility(View.GONE);
         }
         titleTv.setText(status+"登记");
@@ -219,6 +222,7 @@ public class RegisterActivity extends BaseActivity {
                     if (msg.equals("ok")){
                         message.what = UrlValue.MSG_OK;
                     }else {
+                        RegisterActivity.this.message = jsonObject.getString("message");
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
@@ -247,11 +251,11 @@ public class RegisterActivity extends BaseActivity {
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    if (status.equals("教师"))
-                        ToastUtils.show(RegisterActivity.this,"登记失败，工号可能已存在！", Toast.LENGTH_LONG);
-                    else
-                        ToastUtils.show(RegisterActivity.this,"登记失败，学号可能已存在！", Toast.LENGTH_LONG);
-                    break;
+                    //if (status.equals("教师"))
+                        ToastUtils.show(RegisterActivity.this,RegisterActivity.this.message, Toast.LENGTH_LONG);
+                    //else
+                        //ToastUtils.show(RegisterActivity.this,"登记失败，学号可能已存在！", Toast.LENGTH_LONG);
+                    //break;
             }
         }
     }

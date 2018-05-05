@@ -239,13 +239,16 @@ public class OrderAddActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 添加订单
+     */
     private void insertOrder(){
         Map<Object,Object> map = new HashMap<>();
         map.put("bookId",bookId);
-        map.put("teacherId","6666");
+        map.put("teacherId",User.USER_ID);
         map.put("courseName",courseName);
         map.put("bookName",bookName);
-        map.put("teacherName","是我");
+        map.put("teacherName",User.USER_NAME);
         map.put("grade",gradeStr);
         map.put("total",total);
         map.put("numbers",numbers);
@@ -264,9 +267,8 @@ public class OrderAddActivity extends BaseActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                JSONObject jsonObject = null;
                 try {
-                    jsonObject = new JSONObject(response.body().string());
+                    JSONObject jsonObject = new JSONObject(response.body().string());
                     String msg = jsonObject.getString("msg");
                     Message message = new Message();
                     if (msg.equals("ok")) {

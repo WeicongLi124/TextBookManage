@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -47,7 +48,7 @@ public class LoginActivity extends BaseActivity {
     private RelativeLayout loginLayout;
     private EditText idEdt;
     private EditText pswEdt;
-    private TextView registerTv;
+    private LinearLayout registerLl;
     private RadioGroup statusRg;
     private RadioButton teacherRbtn;
     private RadioButton studentRbtn;
@@ -73,7 +74,7 @@ public class LoginActivity extends BaseActivity {
         loginLayout = findViewById(R.id.login_rl);
         idEdt = findViewById(R.id.login_id_edt);
         pswEdt = findViewById(R.id.login_password_edt);
-        registerTv = findViewById(R.id.register_tv);
+        registerLl = findViewById(R.id.register_ll);
         statusRg = findViewById(R.id.login_status_rg);
         teacherRbtn = findViewById(R.id.radio_teacher);
         studentRbtn = findViewById(R.id.radio_student);
@@ -92,7 +93,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
         //注册按钮监听
-        registerTv.setOnClickListener(new View.OnClickListener() {
+        registerLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 jumpToActivity(LoginActivity.this,StatusActivity.class);
@@ -151,12 +152,12 @@ public class LoginActivity extends BaseActivity {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     Log.i("onResponse",jsonObject.toString());
                     String msg = jsonObject.getString("msg");
-                    User.USER_ID = jsonObject.getString("id");
-                    User.USER_NAME = jsonObject.getString("name");
-                    User.USER_STATUS = status;
-                    if (status.equals("学生")) User.USER_GRADE = jsonObject.getString("grade");
                     Message message = new Message();
                     if (msg.equals("ok")){
+                        User.USER_ID = jsonObject.getString("id");
+                        User.USER_NAME = jsonObject.getString("name");
+                        User.USER_STATUS = status;
+                        if (status.equals("学生")) User.USER_GRADE = jsonObject.getString("grade");
                         message.what = UrlValue.MSG_OK;
                     }else {
                         message.what = UrlValue.MSG_ERROR;

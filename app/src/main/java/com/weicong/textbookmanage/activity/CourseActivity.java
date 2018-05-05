@@ -99,18 +99,18 @@ public class CourseActivity extends BaseActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (searchEdt.getText().toString().trim().equals(""))
-                    getList();
-                else searchCourse();
+                searchCourse();
             }
         });
     }
 
     private void getList(){
         Map<Object,Object> map = new HashMap<>();
-        map.put("status","学生");
-        //map.put("id","1001001");
-        map.put("grade","软件工程2班");
+        map.put("status",User.USER_STATUS);
+        map.put("id",User.USER_ID);
+        if (User.USER_STATUS.equals("学生")) {
+            map.put("grade", "软件工程2班");
+        }
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
@@ -147,9 +147,11 @@ public class CourseActivity extends BaseActivity {
     private void searchCourse(){
         Map<Object,Object> map = new HashMap<>();
         map.put("keywords",searchEdt.getText().toString());
-        map.put("status","教师");
-        //map.put("id","1001001");
-        map.put("grade","软件工程2班");
+        map.put("status",User.USER_STATUS);
+        map.put("id",User.USER_ID);
+        if (User.USER_STATUS.equals("学生")) {
+            map.put("grade", User.USER_GRADE);
+        }
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
@@ -183,6 +185,12 @@ public class CourseActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        searchCourse();
     }
 
     private static final int GET_LIST = 1;

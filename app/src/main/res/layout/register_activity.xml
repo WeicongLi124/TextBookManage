@@ -58,6 +58,7 @@
         <EditText
             android:id="@+id/register_psw_edt"
             android:textSize="16sp"
+            android:hint="请输入密码"
             android:maxLines="1"
             android:maxLength="8"
             android:inputType="textPassword"
@@ -92,6 +93,7 @@
         <EditText
             android:id="@+id/register_name_edt"
             android:textSize="16sp"
+            android:hint="请输入你的名字"
             android:maxLines="1"
             android:maxLength="6"
             android:inputType="text"
