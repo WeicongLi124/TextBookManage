@@ -73,7 +73,7 @@ public class BookActivity extends BaseActivity {
         if (User.USER_STATUS.equals("学生")){
             addBtn.setVisibility(View.GONE);
         }
-        getBookList("");
+        searchBook();
     }
 
     @Override
@@ -103,23 +103,22 @@ public class BookActivity extends BaseActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBookList(searchEdt.getText().toString().trim());
+                searchBook();
             }
         });
     }
 
     /**
      * 获取教材列表
-     * @param searchText
      */
-    private void getBookList(String searchText){
+    private void searchBook(){
         Map<Object,Object> map = new HashMap<>();
-        map.put("keywords",searchText);
+        map.put("keywords",searchEdt.getText().toString().trim());
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.GET_BOOK_LIST)
+                .url(UrlValue.SEARCH_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -151,7 +150,7 @@ public class BookActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getBookList(searchEdt.getText().toString());
+        searchBook();
     }
 
     private class MyHandler extends BaseHandler{

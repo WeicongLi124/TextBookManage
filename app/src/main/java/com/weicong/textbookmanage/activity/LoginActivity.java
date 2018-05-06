@@ -180,11 +180,11 @@ public class LoginActivity extends BaseActivity {
         public void handleMessage(Message message, int what) {
             switch (what){
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(LoginActivity.this,"登陆成功！",Toast.LENGTH_LONG);
+                    ToastUtils.show(LoginActivity.this,"登陆成功",Toast.LENGTH_LONG);
                     jumpToActivity(LoginActivity.this,MainActivity.class);
                     break;
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(LoginActivity.this,"账号或密码错误！",Toast.LENGTH_LONG);
+                    ToastUtils.show(LoginActivity.this,"请检查账号和密码",Toast.LENGTH_LONG);
             }
         }
     }

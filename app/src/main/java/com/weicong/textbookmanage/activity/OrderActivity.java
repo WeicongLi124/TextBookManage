@@ -70,7 +70,7 @@ public class OrderActivity extends BaseActivity {
         if (User.USER_STATUS.equals("学生")){
             addBtn.setVisibility(View.GONE);
         }
-        getOrder("");
+        searchOrder();
     }
 
     @Override
@@ -92,14 +92,17 @@ public class OrderActivity extends BaseActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getOrder(searchEdt.getText().toString());
+                searchOrder();
             }
         });
     }
 
-    private void getOrder(String searchText){
+    /**
+     * 获取订单信息
+     */
+    private void searchOrder(){
         Map<Object,Object> map = new HashMap<>();
-        map.put("keywords",searchText);
+        map.put("keywords",searchEdt.getText().toString());
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
@@ -136,7 +139,7 @@ public class OrderActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getOrder(searchEdt.getText().toString());
+        searchOrder();
     }
 
     class MyHandler extends BaseHandler{

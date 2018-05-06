@@ -71,7 +71,7 @@ public class CourseActivity extends BaseActivity {
         if (User.USER_STATUS.equals("学生")){
             addBtn.setVisibility(View.GONE);
         }
-        getList();
+        searchCourse();
     }
 
     @Override
@@ -104,46 +104,9 @@ public class CourseActivity extends BaseActivity {
         });
     }
 
-    private void getList(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("status",User.USER_STATUS);
-        map.put("id",User.USER_ID);
-        if (User.USER_STATUS.equals("学生")) {
-            map.put("grade", "软件工程2班");
-        }
-        Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(UrlValue.GET_COURSE_LIST)
-                .post(requestBody)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
-                    Gson gson1 = new Gson();
-                    courseBeanList = new ArrayList<>();
-                    courseBeanList = gson1.fromJson(jsonObject.getString("list"),
-                            new TypeToken<List<CourseBean>>(){}.getType());
-                    Message message = new Message();
-                    if (jsonObject.getString("msg").equals("ok"))
-                        message.what = GET_LIST;
-                    else message.what = UrlValue.MSG_ERROR;
-                    handler.sendMessage(message);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+    /**
+     * 获取课程信息
+     */
     private void searchCourse(){
         Map<Object,Object> map = new HashMap<>();
         map.put("keywords",searchEdt.getText().toString());

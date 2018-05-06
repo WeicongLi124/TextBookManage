@@ -22,9 +22,6 @@ public class StatusActivity extends BaseActivity {
     protected void initView() {
         studentLl = findViewById(R.id.status_student_ll);
         teacherLl = findViewById(R.id.status_teacher_ll);
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(android.R.transition.slide_bottom));
-        }*/
     }
 
     @Override

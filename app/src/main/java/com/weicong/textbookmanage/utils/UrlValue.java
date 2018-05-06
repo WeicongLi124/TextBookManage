@@ -46,7 +46,7 @@ public class UrlValue {
     /**
      * 获取教材列表
      */
-    public static String GET_BOOK_LIST = SERVICE + "getBookList";
+    public static String SEARCH_BOOK = SERVICE + "searchBook";
 
     /**
      * 删除教材数据

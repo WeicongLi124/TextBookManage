@@ -82,6 +82,9 @@ public class BookAddActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 添加教材信息
+     */
     private void insertBook(){
         Map<Object,Object> map = new HashMap<>();
         map.put("isbn",isbnEdt.getText().toString());

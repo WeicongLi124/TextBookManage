@@ -166,7 +166,7 @@ public class CourseAddActivity extends BaseActivity {
     }
 
     /**
-     * 对接插入课程信息的接口
+     * 添加课程信息
      */
     private void insertCourse(){
         Map<Object,Object> map = new HashMap<>();

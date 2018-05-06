@@ -236,7 +236,6 @@ public class RegisterActivity extends BaseActivity {
     /**
      * 开启线程处理登记成功与否
      */
-
     private class MyHandler extends BaseHandler{
 
         MyHandler(Activity activity) {
