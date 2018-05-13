@@ -7,18 +7,17 @@ package com.weicong.textbookmanage.model;
  * Function:
  */
 public class CourseBean {
-    private String grade;
+    private String courseId;
     private String courseName;
-    private String teacherName;
-    private String type;
-    private int credit;
+    private String courseType;
+    private int courseCredit;
 
-    public String getGrade() {
-        return grade;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
     public String getCourseName() {
@@ -29,27 +28,19 @@ public class CourseBean {
         this.courseName = courseName;
     }
 
-    public String getTeacherName() {
-        return teacherName;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
-    public String getType() {
-        return type;
+    public int getCourseCredit() {
+        return courseCredit;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public void setCourseCredit(int courseCredit) {
+        this.courseCredit = courseCredit;
     }
 }

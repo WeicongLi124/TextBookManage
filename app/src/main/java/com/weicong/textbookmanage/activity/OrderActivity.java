@@ -3,7 +3,6 @@ package com.weicong.textbookmanage.activity;
 import android.app.Activity;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +15,8 @@ import com.google.gson.reflect.TypeToken;
 import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
-import com.weicong.textbookmanage.model.BookBean;
 import com.weicong.textbookmanage.model.OrderBean;
 import com.weicong.textbookmanage.model.User;
-import com.weicong.textbookmanage.other.BookAdapter;
 import com.weicong.textbookmanage.other.OrderAdapter;
 import com.weicong.textbookmanage.utils.UrlValue;
 
@@ -107,7 +104,7 @@ public class OrderActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.GET_ORDER_LIST)
+                .url(UrlValue.SEARCH_ORDER)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

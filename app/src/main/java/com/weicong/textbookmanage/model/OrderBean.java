@@ -13,7 +13,7 @@ public class OrderBean {
     private String bookName;
     private String teacherName;
     private String grade;
-    private int numbers;
+    private int number;
     private double total;
 
     public String getBookId() {
@@ -64,12 +64,12 @@ public class OrderBean {
         this.grade = grade;
     }
 
-    public int getNumbers() {
-        return numbers;
+    public int getNumber() {
+        return number;
     }
 
-    public void setNumbers(int numbers) {
-        this.numbers = numbers;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public double getTotal() {

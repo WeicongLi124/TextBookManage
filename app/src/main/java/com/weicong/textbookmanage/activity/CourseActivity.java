@@ -110,11 +110,6 @@ public class CourseActivity extends BaseActivity {
     private void searchCourse(){
         Map<Object,Object> map = new HashMap<>();
         map.put("keywords",searchEdt.getText().toString());
-        map.put("status",User.USER_STATUS);
-        map.put("id",User.USER_ID);
-        if (User.USER_STATUS.equals("学生")) {
-            map.put("grade", User.USER_GRADE);
-        }
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();

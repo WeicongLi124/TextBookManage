@@ -51,29 +51,22 @@ public class CourseAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.course_item,parent,false);
             viewHolder.nameTv = convertView.findViewById(R.id.course_name_tv);
-            viewHolder.teacherTv = convertView.findViewById(R.id.course_teacher_tv);
             viewHolder.typeTv = convertView.findViewById(R.id.course_type_tv);
             viewHolder.creditTv = convertView.findViewById(R.id.course_credit_tv);
-            viewHolder.gradeTv = convertView.findViewById(R.id.course_grade_tv);
             convertView.setTag(viewHolder);
         }else viewHolder = (ViewHolder) convertView.getTag();
-        viewHolder.creditTv.setText(courseBeanList.get(position).getCredit()+"");
+        viewHolder.creditTv.setText(courseBeanList.get(position).getCourseCredit()+"");
         viewHolder.nameTv.setText(courseBeanList.get(position).getCourseName());
-        viewHolder.teacherTv.setText(courseBeanList.get(position).getTeacherName());
-        viewHolder.teacherTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-        viewHolder.typeTv.setText(courseBeanList.get(position).getType());
-        if (courseBeanList.get(position).getType().equals("必修")){
+        viewHolder.typeTv.setText(courseBeanList.get(position).getCourseType());
+        if (courseBeanList.get(position).getCourseType().equals("必修")){
             viewHolder.typeTv.setTextColor(Color.parseColor("#ff0000"));
         }else viewHolder.typeTv.setTextColor(Color.parseColor("#1692f1"));
-        viewHolder.gradeTv.setText(courseBeanList.get(position).getGrade());
         return convertView;
     }
 
     private class ViewHolder{
         private TextView nameTv;
         private TextView typeTv;
-        private TextView teacherTv;
         private TextView creditTv;
-        private TextView gradeTv;
     }
 }

@@ -20,6 +20,7 @@ import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
 import com.weicong.textbookmanage.model.BookBean;
+import com.weicong.textbookmanage.model.CourseBean;
 import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.utils.UrlValue;
 
@@ -59,23 +60,20 @@ public class OrderAddActivity extends BaseActivity {
     private TextView totalTv;
     private TextView submitBtn;
 
-    private String[] faculty = {"计算机工程学院","土木工程学院","管理学院","外国语学院"};
-    private String[][] grade = {
-            {"软件工程1班","软件工程2班","计科1班","信科1班","网络工程1班","网络工程2班"},
-            {"土木工程1班","土木工程2班","水利工程1班","水利工程2班"},
-            {"会计学1班","会计学2班","工商管理1班","市场营销1班"},
-            {"英语专业1班","英语专业2班","日语专业1班","日语专业2班"}};
-    private String[] courseNameList = {"高等数学(上)","高等数学(下)","离散数学","线性代数","概率论","大学英语",
-            "计算机英语","马克思主义哲学","C语言程序设计","PS设计基础","基础日语"};
+    private String[] faculty = User.faculty;
+    private String[][] grade = User.grade;
+
     private int facultyIndex = 0;
     private int bookIndex = 0;
     private String bookId;
-    private String courseName = courseNameList[0];
+    private String courseId;
     private String gradeStr = grade[0][0];
-    private int numbers = 0;
+    private int number = 0;
     private double total = 0;
     private List<BookBean> bookBeanList;
+    private List<CourseBean> courseBeanList;
     private List<String> bookList;
+    private List<String> courseList;
     private MyHandler handler = new MyHandler(this);
     private String message;
 
@@ -99,10 +97,10 @@ public class OrderAddActivity extends BaseActivity {
 
         teacherTv.setText(User.USER_NAME);
         totalTv.setText(total+"¥");
-        courseSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(courseNameList)));
         facultySp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(faculty)));
         gradeSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[0])));
         getBookList();
+        getCourseList();
     }
 
     @Override
@@ -118,7 +116,7 @@ public class OrderAddActivity extends BaseActivity {
         courseSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                courseName = courseNameList[position];
+                courseId = courseBeanList.get(position).getCourseId();
             }
 
             @Override
@@ -155,6 +153,8 @@ public class OrderAddActivity extends BaseActivity {
                 bookIndex = position;
                 bookId = bookBeanList.get(position).getBookISBN();
                 priceTv.setText(bookBeanList.get(position).getBookPrice()+"¥");
+                total = number * bookBeanList.get(bookIndex).getBookPrice();
+                totalTv.setText(total+"¥");
             }
 
             @Override
@@ -172,9 +172,9 @@ public class OrderAddActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (numbersEdt.getText().toString().equals("")){
-                    numbers = 0;
-                }else numbers = Integer.parseInt(numbersEdt.getText().toString());
-                total = numbers * bookBeanList.get(bookIndex).getBookPrice();
+                    number = 0;
+                }else number = Integer.parseInt(numbersEdt.getText().toString());
+                total = number * bookBeanList.get(bookIndex).getBookPrice();
                 totalTv.setText(total+"¥");
             }
 
@@ -186,7 +186,7 @@ public class OrderAddActivity extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (numbers == 0){
+                if (number == 0){
                     ToastUtils.show(OrderAddActivity.this,"数量不可为空",Toast.LENGTH_LONG);
                 }else insertOrder();
             }
@@ -239,6 +239,49 @@ public class OrderAddActivity extends BaseActivity {
         });
     }
 
+    private void getCourseList(){
+        Map<Object,Object> map = new HashMap<>();
+        map.put("keywords","");
+        Gson gson = new Gson();
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(UrlValue.SEARCH_COURSE)
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    Gson gson1 = new Gson();
+                    courseBeanList = new ArrayList<>();
+                    courseList = new ArrayList<>();
+                    courseBeanList = gson1.fromJson(jsonObject.getString("list"),
+                            new TypeToken<List<CourseBean>>() {
+                            }.getType());
+                    for (int i = 0; i < courseBeanList.size(); i++) {
+                        courseList.add(courseBeanList.get(i).getCourseName());
+                    }
+                    Message message = new Message();
+                    if (jsonObject.getString("msg").equals("ok"))
+                        message.what = GET_COURSE_lIST;
+                    else{
+                        message.what = UrlValue.MSG_ERROR;
+                    }
+                    handler.sendMessage(message);
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     /**
      * 添加订单信息
      */
@@ -246,10 +289,10 @@ public class OrderAddActivity extends BaseActivity {
         Map<Object,Object> map = new HashMap<>();
         map.put("bookId",bookId);
         map.put("teacherId",User.USER_ID);
-        map.put("courseName",courseName);
+        map.put("courseId",courseId);
         map.put("grade",gradeStr);
         map.put("total",total);
-        map.put("numbers",numbers);
+        map.put("number", number);
         Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
@@ -284,6 +327,7 @@ public class OrderAddActivity extends BaseActivity {
     }
 
     private static final int GET_BOOK_LIST = 2;
+    private static final int GET_COURSE_lIST = 3;
     class MyHandler extends BaseHandler{
 
         public MyHandler(Activity activity) {
@@ -302,6 +346,9 @@ public class OrderAddActivity extends BaseActivity {
                     break;
                 case GET_BOOK_LIST:
                     bookSp.setAdapter(new ArrayAdapter(OrderAddActivity.this, android.R.layout.simple_spinner_dropdown_item,bookList));
+                    break;
+                case GET_COURSE_lIST:
+                    courseSp.setAdapter(new ArrayAdapter(OrderAddActivity.this, android.R.layout.simple_spinner_dropdown_item, courseList));
                     break;
             }
         }

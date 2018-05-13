@@ -8,7 +8,7 @@
         android:layout_margin="5dp"
         android:padding="5dp"
         android:gravity="center"
-        android:background="@drawable/item_bg"
+        android:background="@drawable/bg_press"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -23,7 +23,6 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/order_course_tv"
-                android:text="《软件工程》"
                 android:textSize="20sp"
                 android:textColor="@color/mainColor"
                 android:layout_width="wrap_content"
@@ -42,7 +41,6 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/order_book_tv"
-                android:text="《软件工程》"
                 android:textSize="16sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
@@ -61,7 +59,6 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/order_teacher_tv"
-                android:text="《软件工程》"
                 android:textSize="16sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
@@ -81,14 +78,13 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/order_grade_tv"
-                android:text="《软件工程》"
                 android:textSize="16sp"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
-            android:weightSum="2"
+            android:weightSum="3"
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
@@ -100,15 +96,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="征订数量："
-                    android:textSize="18sp"
+                    android:text="数量："
+                    android:textSize="14sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/order_numbers_tv"
-                    android:text="50"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -120,15 +115,33 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="价格："
-                    android:textSize="18sp"
+                    android:text="单价："
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/order_price_tv"
+                    android:textSize="14sp"
+                    android:textColor="#ff0000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="总价："
+                    android:textSize="14sp"
                     android:textColor="#000000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/order_total_tv"
-                    android:text="1000.50¥"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="#ff0000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

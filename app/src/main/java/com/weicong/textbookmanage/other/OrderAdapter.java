@@ -53,14 +53,16 @@ public class OrderAdapter extends BaseAdapter {
             viewHolder.gradeTv = convertView.findViewById(R.id.order_grade_tv);
             viewHolder.numbersTv = convertView.findViewById(R.id.order_numbers_tv);
             viewHolder.totalTv = convertView.findViewById(R.id.order_total_tv);
+            viewHolder.priceTv = convertView.findViewById(R.id.order_price_tv);
             convertView.setTag(viewHolder);
         }else viewHolder = (ViewHolder) convertView.getTag();
         viewHolder.bookTv.setText("《"+orderBeanList.get(position).getBookName()+"》");
         viewHolder.courseTv.setText(orderBeanList.get(position).getCourseName());
         viewHolder.teacherTv.setText(orderBeanList.get(position).getTeacherName());
         viewHolder.gradeTv.setText(orderBeanList.get(position).getGrade());
-        viewHolder.numbersTv.setText(orderBeanList.get(position).getNumbers()+"");
+        viewHolder.numbersTv.setText(orderBeanList.get(position).getNumber()+"");
         viewHolder.totalTv.setText(orderBeanList.get(position).getTotal()+"");
+        viewHolder.priceTv.setText(orderBeanList.get(position).getTotal()/orderBeanList.get(position).getNumber()+"");
         return convertView;
     }
 
@@ -71,5 +73,6 @@ public class OrderAdapter extends BaseAdapter {
         private TextView gradeTv;
         private TextView numbersTv;
         private TextView totalTv;
+        private TextView priceTv;
     }
 }

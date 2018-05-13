@@ -61,7 +61,7 @@ public class UrlValue {
     /**
      * 获取订单列表
      */
-    public static String GET_ORDER_LIST = SERVICE + "getOrderList";
+    public static String SEARCH_ORDER = SERVICE + "searchOrder";
 
     /**
      * 订单录入

@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.weicong.frankutils124.base.BaseActivity;
 import com.weicong.frankutils124.base.BaseHandler;
 import com.weicong.frankutils124.utils.ToastUtils;
+import com.weicong.textbookmanage.model.User;
 import com.weicong.textbookmanage.utils.UrlValue;
 
 import org.json.JSONException;
@@ -75,12 +76,9 @@ public class RegisterActivity extends BaseActivity {
     /**
      * spinner数组数据写死
      */
-    private String[] faculty = {"计算机工程学院","土木工程学院","管理学院","外国语学院"};
-    private String[][] grade = {
-            {"软件工程1班","软件工程2班","计算机与科学技术1班","信息技术与科学1班","网络工程1班","网络工程2班"},
-            {"土木工程1班","土木工程2班","水利工程1班","水利工程2班"},
-            {"会计学1班","会计学2班","工商管理1班","市场营销1班"},
-            {"英语专业1班","英语专业2班","日语专业1班","日语专业2班"}};
+    private String[] faculty = User.faculty;
+    private String[][] grade = User.grade;
+
     private MyHandler handler = new MyHandler(this);
     private String message;
 
@@ -250,11 +248,7 @@ public class RegisterActivity extends BaseActivity {
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    //if (status.equals("教师"))
-                        ToastUtils.show(RegisterActivity.this,RegisterActivity.this.message, Toast.LENGTH_LONG);
-                    //else
-                        //ToastUtils.show(RegisterActivity.this,"登记失败，学号可能已存在！", Toast.LENGTH_LONG);
-                    //break;
+                    ToastUtils.show(RegisterActivity.this,RegisterActivity.this.message, Toast.LENGTH_LONG);
             }
         }
     }
