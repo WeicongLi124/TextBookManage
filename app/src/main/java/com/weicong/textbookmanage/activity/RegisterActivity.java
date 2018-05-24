@@ -203,7 +203,7 @@ public class RegisterActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.REGISTER)
+                .url(UrlValue.SERVICE+UrlValue.REGISTER)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

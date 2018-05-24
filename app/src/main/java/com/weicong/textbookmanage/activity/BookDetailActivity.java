@@ -125,7 +125,7 @@ public class BookDetailActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.UPDATE_BOOK)
+                .url(UrlValue.SERVICE+UrlValue.UPDATE_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -161,7 +161,7 @@ public class BookDetailActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.DELETE_BOOK)
+                .url(UrlValue.SERVICE+UrlValue.DELETE_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

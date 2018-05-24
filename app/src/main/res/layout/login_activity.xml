@@ -29,6 +29,28 @@
             android:layout_height="20dp" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:background="@drawable/login_border_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/serverEdt"
+            android:hint="服务器地址如:192.163.1.1:8080"
+            android:layout_toStartOf="@id/commitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/commitBtn"
+            android:text="确定"
+            android:textColor="#ffffff"
+            android:layout_marginEnd="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_bg"
+            android:layout_alignParentEnd="true"
+            android:layout_width="70dp"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+
     <android.support.v7.widget.CardView
         app:cardCornerRadius="5dp"
         app:cardElevation="0dp"

@@ -11,60 +11,60 @@ public class UrlValue {
     public static final int MSG_ERROR = 0;
     public static String ENCODING = "application/json; charset=utf-8";
 
-    private static String SERVICE = "http://10.11.3.209:8080/";
+    public static String SERVICE = "http://10.11.3.209:8080/";
 
     /**
      * 注册
      */
-    public static String REGISTER = SERVICE + "register";
+    public static String REGISTER = "register";
 
     /**
      * 登陆
      */
-    public static String LOGIN = SERVICE + "login";
+    public static String LOGIN = "login";
 
     /**
      * 获取课程列表
      */
-    public static String GET_COURSE_LIST = SERVICE + "getCourseList";
+    public static String GET_COURSE_LIST = "getCourseList";
 
     /**
      * 课程录入
      */
-    public static String INSERT_COURSE = SERVICE + "insertCourse";
+    public static String INSERT_COURSE = "insertCourse";
 
     /**
      * 课程搜索
      */
-    public static String SEARCH_COURSE = SERVICE + "searchCourse";
+    public static String SEARCH_COURSE = "searchCourse";
 
     /**
      * 教材录入
      */
-    public static String INSERT_BOOK = SERVICE + "insertBook";
+    public static String INSERT_BOOK = "insertBook";
 
     /**
      * 获取教材列表
      */
-    public static String SEARCH_BOOK = SERVICE + "searchBook";
+    public static String SEARCH_BOOK = "searchBook";
 
     /**
      * 删除教材数据
      */
-    public static String DELETE_BOOK = SERVICE + "deleteBook";
+    public static String DELETE_BOOK = "deleteBook";
 
     /**
      * 修改教材数据
      */
-    public static String UPDATE_BOOK = SERVICE + "updateBook";
+    public static String UPDATE_BOOK = "updateBook";
 
     /**
      * 获取订单列表
      */
-    public static String SEARCH_ORDER = SERVICE + "searchOrder";
+    public static String SEARCH_ORDER = "searchOrder";
 
     /**
      * 订单录入
      */
-    public static String INSERT_ORDER = SERVICE + "insertOrder";
+    public static String INSERT_ORDER = "insertOrder";
 }

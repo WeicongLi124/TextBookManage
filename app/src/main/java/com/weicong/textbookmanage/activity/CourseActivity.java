@@ -114,7 +114,7 @@ public class CourseActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SEARCH_COURSE)
+                .url(UrlValue.SERVICE+UrlValue.SEARCH_COURSE)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

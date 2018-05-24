@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -53,6 +54,8 @@ public class LoginActivity extends BaseActivity {
     private RadioButton teacherRbtn;
     private RadioButton studentRbtn;
     private TextView loginTv;
+    private EditText serverEdt;
+    private Button commitBtn;
     /**
      * 身份字符串
      */
@@ -70,7 +73,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setSteepStatusBar();
+        //setSteepStatusBar();
         loginLayout = findViewById(R.id.login_rl);
         idEdt = findViewById(R.id.login_id_edt);
         pswEdt = findViewById(R.id.login_password_edt);
@@ -79,6 +82,8 @@ public class LoginActivity extends BaseActivity {
         teacherRbtn = findViewById(R.id.radio_teacher);
         studentRbtn = findViewById(R.id.radio_student);
         loginTv = findViewById(R.id.login_login_tv);
+        serverEdt = findViewById(R.id.serverEdt);
+        commitBtn = findViewById(R.id.commitBtn);
     }
 
     @Override
@@ -123,6 +128,15 @@ public class LoginActivity extends BaseActivity {
                 }else login();
             }
         });
+        commitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UrlValue.SERVICE = "http://"+serverEdt.getText().toString().trim()+"/";
+                ToastUtils.show(LoginActivity.this,"修改成功",Toast.LENGTH_LONG);
+                loginLayout.requestFocus();
+                hideSoftInput();
+            }
+        });
     }
 
     /**
@@ -137,12 +151,15 @@ public class LoginActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.LOGIN)
+                .url(UrlValue.SERVICE+UrlValue.LOGIN)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Message message = new Message();
+                message.what = 2;
+                handler.sendMessage(message);
 
             }
 
@@ -185,6 +202,10 @@ public class LoginActivity extends BaseActivity {
                     break;
                 case UrlValue.MSG_ERROR:
                     ToastUtils.show(LoginActivity.this,"请检查账号和密码",Toast.LENGTH_LONG);
+                    break;
+                case 2:
+                    ToastUtils.show(LoginActivity.this,"服务器错误",Toast.LENGTH_LONG);
+                    break;
             }
         }
     }

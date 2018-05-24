@@ -124,7 +124,7 @@ public class CourseAddActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(UrlValue.INSERT_COURSE)
+                .url(UrlValue.SERVICE+UrlValue.INSERT_COURSE)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

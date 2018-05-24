@@ -96,7 +96,7 @@ public class BookAddActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(UrlValue.INSERT_BOOK)
+                .url(UrlValue.SERVICE+UrlValue.INSERT_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
