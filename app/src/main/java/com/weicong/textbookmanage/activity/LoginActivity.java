@@ -101,14 +101,14 @@ public class LoginActivity extends BaseActivity {
         registerLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpToActivity(LoginActivity.this,StatusActivity.class);
+                jumpToActivity(LoginActivity.this, StatusActivity.class);
             }
         });
         //身份单选监听
         statusRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (group.getCheckedRadioButtonId()){
+                switch (group.getCheckedRadioButtonId()) {
                     case R.id.radio_teacher:
                         status = "教师";
                         break;
@@ -123,16 +123,16 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 loginLayout.requestFocus();
-                if (idEdt.getText().toString().trim().equals("")||pswEdt.getText().toString().trim().equals("")){
-                    ToastUtils.show(LoginActivity.this,"不可为空", Toast.LENGTH_LONG);
-                }else login();
+                if (idEdt.getText().toString().trim().equals("") || pswEdt.getText().toString().trim().equals("")) {
+                    ToastUtils.show(LoginActivity.this, "不可为空", Toast.LENGTH_LONG);
+                } else login();
             }
         });
         commitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UrlValue.SERVICE = "http://"+serverEdt.getText().toString().trim()+"/";
-                ToastUtils.show(LoginActivity.this,"修改成功",Toast.LENGTH_LONG);
+                UrlValue.SERVICE = "http://" + serverEdt.getText().toString().trim() + "/";
+                ToastUtils.show(LoginActivity.this, "修改成功", Toast.LENGTH_LONG);
                 loginLayout.requestFocus();
                 hideSoftInput();
             }
@@ -142,16 +142,16 @@ public class LoginActivity extends BaseActivity {
     /**
      * 登陆接口对接
      */
-    private void login(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("status",status);
-        map.put("id",idEdt.getText().toString());
-        map.put("psw",pswEdt.getText().toString());
+    private void login() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("status", status);
+        map.put("id", idEdt.getText().toString());
+        map.put("psw", pswEdt.getText().toString());
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.LOGIN)
+                .url(UrlValue.SERVICE + UrlValue.LOGIN)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -167,16 +167,16 @@ public class LoginActivity extends BaseActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
-                    Log.i("onResponse",jsonObject.toString());
+                    Log.i("onResponse", jsonObject.toString());
                     String msg = jsonObject.getString("msg");
                     Message message = new Message();
-                    if (msg.equals("ok")){
+                    if (msg.equals("ok")) {
                         User.USER_ID = jsonObject.getString("id");
                         User.USER_NAME = jsonObject.getString("name");
                         User.USER_STATUS = status;
                         if (status.equals("学生")) User.USER_GRADE = jsonObject.getString("grade");
                         message.what = UrlValue.MSG_OK;
-                    }else {
+                    } else {
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
@@ -187,7 +187,7 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private class MyHandler extends BaseHandler{
+    private class MyHandler extends BaseHandler {
 
         public MyHandler(Activity activity) {
             super(activity);
@@ -195,16 +195,16 @@ public class LoginActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(LoginActivity.this,"登陆成功",Toast.LENGTH_LONG);
-                    jumpToActivity(LoginActivity.this,MainActivity.class);
+                    ToastUtils.show(LoginActivity.this, "登陆成功", Toast.LENGTH_LONG);
+                    jumpToActivity(LoginActivity.this, MainActivity.class);
                     break;
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(LoginActivity.this,"请检查账号和密码",Toast.LENGTH_LONG);
+                    ToastUtils.show(LoginActivity.this, "请检查账号和密码", Toast.LENGTH_LONG);
                     break;
                 case 2:
-                    ToastUtils.show(LoginActivity.this,"服务器错误",Toast.LENGTH_LONG);
+                    ToastUtils.show(LoginActivity.this, "服务器错误", Toast.LENGTH_LONG);
                     break;
             }
         }

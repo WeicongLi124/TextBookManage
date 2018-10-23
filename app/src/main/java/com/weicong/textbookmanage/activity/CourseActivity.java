@@ -56,6 +56,7 @@ public class CourseActivity extends BaseActivity {
     private List<CourseBean> courseBeanList;
 
     private MyHandler handler = new MyHandler(this);
+
     @Override
     protected int setLayout() {
         return R.layout.course_activity;
@@ -68,7 +69,7 @@ public class CourseActivity extends BaseActivity {
         addBtn = findViewById(R.id.course_add_btn);
         searchEdt = findViewById(R.id.course_search_edt);
         searchBtn = findViewById(R.id.course_search_btn);
-        if (User.USER_STATUS.equals("学生")){
+        if (User.USER_STATUS.equals("学生")) {
             addBtn.setVisibility(View.GONE);
         }
         searchCourse();
@@ -79,13 +80,13 @@ public class CourseActivity extends BaseActivity {
         courseLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("onItemClick",position+"");
+                Log.i("onItemClick", position + "");
             }
         });
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpToActivity(CourseActivity.this,CourseAddActivity.class);
+                jumpToActivity(CourseActivity.this, CourseAddActivity.class);
             }
         });
         courseLv.setOnTouchListener(new View.OnTouchListener() {
@@ -107,14 +108,14 @@ public class CourseActivity extends BaseActivity {
     /**
      * 获取课程信息
      */
-    private void searchCourse(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("keywords",searchEdt.getText().toString());
+    private void searchCourse() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("keywords", searchEdt.getText().toString());
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.SEARCH_COURSE)
+                .url(UrlValue.SERVICE + UrlValue.SEARCH_COURSE)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -128,11 +129,12 @@ public class CourseActivity extends BaseActivity {
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response.body().string());
-                    Log.i("onResponse",jsonObject.toString());
+                    Log.i("onResponse", jsonObject.toString());
                     Gson gson1 = new Gson();
                     courseBeanList = new ArrayList<>();
                     courseBeanList = gson1.fromJson(jsonObject.getString("list"),
-                            new TypeToken<List<CourseBean>>(){}.getType());
+                            new TypeToken<List<CourseBean>>() {
+                            }.getType());
                     Message message = new Message();
                     if (jsonObject.getString("msg").equals("ok"))
                         message.what = SEARCH;
@@ -153,7 +155,8 @@ public class CourseActivity extends BaseActivity {
 
     private static final int GET_LIST = 1;
     private static final int SEARCH = 2;
-    class MyHandler extends BaseHandler{
+
+    class MyHandler extends BaseHandler {
 
         public MyHandler(Activity activity) {
             super(activity);
@@ -161,20 +164,19 @@ public class CourseActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(CourseActivity.this,"操作失败！", Toast.LENGTH_LONG);
+                    ToastUtils.show(CourseActivity.this, "操作失败！", Toast.LENGTH_LONG);
                     break;
                 case GET_LIST:
-                    courseAdapter = new CourseAdapter(CourseActivity.this,courseBeanList);
+                    courseAdapter = new CourseAdapter(CourseActivity.this, courseBeanList);
                     courseLv.setAdapter(courseAdapter);
                     break;
                 case SEARCH:
-                    courseAdapter = new CourseAdapter(CourseActivity.this,courseBeanList);
+                    courseAdapter = new CourseAdapter(CourseActivity.this, courseBeanList);
                     courseLv.setAdapter(courseAdapter);
                     break;
             }
-
         }
     }
 }

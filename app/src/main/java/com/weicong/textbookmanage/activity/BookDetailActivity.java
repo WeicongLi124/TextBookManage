@@ -74,10 +74,10 @@ public class BookDetailActivity extends BaseActivity {
         authorEdt = findViewById(R.id.book_detail_author_edt);
         authorEdt.setText(bookBean.getBookAuthor());
         priceEdt = findViewById(R.id.book_detail_price_edt);
-        priceEdt.setText(bookBean.getBookPrice()+"");
+        priceEdt.setText(bookBean.getBookPrice() + "");
         saveBtn = findViewById(R.id.book_detail_save_btn);
         deleteBtn = findViewById(R.id.book_detail_delete_btn);
-        if (User.USER_STATUS.equals("学生")){
+        if (User.USER_STATUS.equals("学生")) {
             nameEdt.setEnabled(false);
             pressEdt.setEnabled(false);
             authorEdt.setEnabled(false);
@@ -114,18 +114,18 @@ public class BookDetailActivity extends BaseActivity {
     /**
      * 修改教材信息
      */
-    private void saveBook(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("isbn",bookBean.getBookISBN());
-        map.put("name",nameEdt.getText().toString());
-        map.put("press",pressEdt.getText().toString());
-        map.put("author",authorEdt.getText().toString());
-        map.put("price",Double.parseDouble(priceEdt.getText().toString()));
+    private void saveBook() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("isbn", bookBean.getBookISBN());
+        map.put("name", nameEdt.getText().toString());
+        map.put("press", pressEdt.getText().toString());
+        map.put("author", authorEdt.getText().toString());
+        map.put("price", Double.parseDouble(priceEdt.getText().toString()));
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.UPDATE_BOOK)
+                .url(UrlValue.SERVICE + UrlValue.UPDATE_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -154,14 +154,14 @@ public class BookDetailActivity extends BaseActivity {
     /**
      * 删除教材
      */
-    private void deleteBook(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("isbn",bookBean.getBookISBN());
+    private void deleteBook() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("isbn", bookBean.getBookISBN());
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.DELETE_BOOK)
+                .url(UrlValue.SERVICE + UrlValue.DELETE_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -186,7 +186,7 @@ public class BookDetailActivity extends BaseActivity {
         });
     }
 
-    class MyHandler extends BaseHandler{
+    class MyHandler extends BaseHandler {
 
         public MyHandler(Activity activity) {
             super(activity);
@@ -194,13 +194,13 @@ public class BookDetailActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case SAVE_BOOK:
-                    ToastUtils.show(BookDetailActivity.this,"修改信息成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(BookDetailActivity.this, "修改信息成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
                 case DELETE_BOOK:
-                    ToastUtils.show(BookDetailActivity.this,"删除教材成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(BookDetailActivity.this, "删除教材成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
             }

@@ -1,279 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/order_add_ll"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/order_add_title_tv"
-        android:text="征订教材"
-        android:textSize="30sp"
-        android:textColor="@color/mainColor"
-        android:layout_marginTop="-50dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:text="征订教材"
+        android:textColor="@color/mainColor"
+        android:textSize="30sp" />
 
     <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_border"
+        android:orientation="horizontal">
+
         <Spinner
             android:id="@+id/order_add_book_sp"
-            android:popupBackground="#ffffff"
-            android:paddingStart="50dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:paddingStart="50dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:popupBackground="#ffffff" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="教材："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="教材："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_border"
+        android:orientation="horizontal">
+
         <Spinner
             android:id="@+id/order_add_course_sp"
-            android:popupBackground="#ffffff"
-            android:paddingStart="50dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:paddingStart="50dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:popupBackground="#ffffff" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="课程："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="课程："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/order_add_teacher_tv"
-            android:textSize="16sp"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
             android:maxLines="1"
             android:paddingStart="60dp"
-            android:paddingEnd="10dp"
             android:paddingTop="12dp"
+            android:paddingEnd="10dp"
             android:paddingBottom="12dp"
-            android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="教师："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="教师："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:background="@drawable/login_border"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_border"
+        android:orientation="horizontal">
+
         <Spinner
             android:id="@+id/order_add_faculty_sp"
-            android:popupBackground="#ffffff"
-            android:paddingStart="50dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:paddingStart="50dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:popupBackground="#ffffff" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="院系："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="院系："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:background="@drawable/login_border"
-
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+
+        android:background="@drawable/login_border"
+        android:orientation="horizontal">
+
         <Spinner
             android:id="@+id/order_add_grade_sp"
-            android:popupBackground="#ffffff"
-            android:paddingStart="50dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:paddingStart="50dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:popupBackground="#ffffff" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="班级："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="班级："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/order_add_numbers_edt"
-            android:textSize="16sp"
-            android:hint="请输入征订数量"
-            android:maxLines="1"
-            android:inputType="number"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:hint="请输入征订数量"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="数量："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="数量："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
-        android:weightSum="2"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:layout_width="280dp"
-        android:layout_height="45dp">
-        <RelativeLayout
-            android:layout_weight="1"
+        android:weightSum="2">
 
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="45dp">
+
+            android:layout_height="45dp"
+            android:layout_weight="1">
+
             <TextView
                 android:id="@+id/order_add_price_edt"
-                android:textSize="16sp"
-                android:textColor="#ff0000"
-                android:maxLines="1"
-                android:inputType="text"
-                android:paddingStart="60dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"/>
+                android:layout_height="45dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="60dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="12dp"
+                android:textColor="#ff0000"
+                android:textSize="16sp" />
+
             <LinearLayout
-                android:gravity="center"
-                android:layout_centerVertical="true"
                 android:layout_width="60dp"
-                android:layout_height="45dp">
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
                 <TextView
-                    android:text="单价："
-                    android:textSize="16sp"
-                    android:gravity="end"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="单价："
+                    android:textSize="16sp" />
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
             android:layout_width="0dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/order_add_total_edt"
-                android:textSize="16sp"
-                android:textColor="#ff0000"
-                android:maxLines="1"
-                android:inputType="text"
-                android:paddingStart="60dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"/>
+                android:layout_height="45dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="60dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="12dp"
+                android:textColor="#ff0000"
+                android:textSize="16sp" />
+
             <LinearLayout
-                android:gravity="center"
-                android:layout_centerVertical="true"
                 android:layout_width="60dp"
-                android:layout_height="45dp">
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
                 <TextView
-                    android:text="总价："
-                    android:textSize="16sp"
-                    android:gravity="end"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="总价："
+                    android:textSize="16sp" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/order_add_submit_btn"
-        android:text="完成"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:focusable="true"
-        android:clickable="true"
-        android:background="@drawable/btn_bg"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="-100dp"
-        android:layout_width="80dp"
-        android:layout_height="40dp" />
+        android:background="@drawable/btn_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="完成"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

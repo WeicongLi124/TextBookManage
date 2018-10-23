@@ -21,6 +21,7 @@ import java.util.List;
 public class OrderAdapter extends BaseAdapter {
     private List<OrderBean> orderBeanList;
     private LayoutInflater layoutInflater;
+
     public OrderAdapter(Context context, List<OrderBean> orderBeanList) {
         this.orderBeanList = orderBeanList;
         layoutInflater = LayoutInflater.from(context);
@@ -44,9 +45,9 @@ public class OrderAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
-        if (convertView == null){
+        if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = layoutInflater.inflate(R.layout.order_item,parent,false);
+            convertView = layoutInflater.inflate(R.layout.order_item, parent, false);
             viewHolder.bookTv = convertView.findViewById(R.id.order_book_tv);
             viewHolder.courseTv = convertView.findViewById(R.id.order_course_tv);
             viewHolder.teacherTv = convertView.findViewById(R.id.order_teacher_tv);
@@ -55,18 +56,18 @@ public class OrderAdapter extends BaseAdapter {
             viewHolder.totalTv = convertView.findViewById(R.id.order_total_tv);
             viewHolder.priceTv = convertView.findViewById(R.id.order_price_tv);
             convertView.setTag(viewHolder);
-        }else viewHolder = (ViewHolder) convertView.getTag();
-        viewHolder.bookTv.setText("《"+orderBeanList.get(position).getBookName()+"》");
+        } else viewHolder = (ViewHolder) convertView.getTag();
+        viewHolder.bookTv.setText("《" + orderBeanList.get(position).getBookName() + "》");
         viewHolder.courseTv.setText(orderBeanList.get(position).getCourseName());
         viewHolder.teacherTv.setText(orderBeanList.get(position).getTeacherName());
         viewHolder.gradeTv.setText(orderBeanList.get(position).getGrade());
-        viewHolder.numbersTv.setText(orderBeanList.get(position).getNumber()+"");
-        viewHolder.totalTv.setText(orderBeanList.get(position).getTotal()+"");
-        viewHolder.priceTv.setText(orderBeanList.get(position).getTotal()/orderBeanList.get(position).getNumber()+"");
+        viewHolder.numbersTv.setText(orderBeanList.get(position).getNumber() + "");
+        viewHolder.totalTv.setText(orderBeanList.get(position).getTotal() + "");
+        viewHolder.priceTv.setText(orderBeanList.get(position).getTotal() / orderBeanList.get(position).getNumber() + "");
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         private TextView bookTv;
         private TextView courseTv;
         private TextView teacherTv;

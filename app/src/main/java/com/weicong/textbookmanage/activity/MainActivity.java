@@ -13,13 +13,14 @@ import com.weicong.textbookmanage.model.User;
  * @e-mail: 912220261@qq.com
  * Function:
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout courseLl;
     private LinearLayout bookLl;
     private LinearLayout orderLl;
     private TextView courseTv;
     private TextView bookTv;
     private TextView orderTv;
+
     @Override
     protected int setLayout() {
         return R.layout.main_activity;
@@ -36,7 +37,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         courseTv = findViewById(R.id.main_course_tv);
         bookTv = findViewById(R.id.main_book_tv);
         orderTv = findViewById(R.id.main_order_tv);
-        if (User.USER_STATUS.equals("学生")){
+        if (User.USER_STATUS.equals("学生")) {
             courseTv.setText("课程查询");
             bookTv.setText("教材查询");
             orderTv.setText("教材征订查询");
@@ -49,15 +50,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.main_course_ll:
-                jumpToActivity(MainActivity.this,CourseActivity.class);
+                jumpToActivity(MainActivity.this, CourseActivity.class);
                 break;
             case R.id.main_book_ll:
-                jumpToActivity(MainActivity.this,BookActivity.class);
+                jumpToActivity(MainActivity.this, BookActivity.class);
                 break;
             case R.id.main_order_ll:
-                jumpToActivity(MainActivity.this,OrderActivity.class);
+                jumpToActivity(MainActivity.this, OrderActivity.class);
                 break;
         }
     }

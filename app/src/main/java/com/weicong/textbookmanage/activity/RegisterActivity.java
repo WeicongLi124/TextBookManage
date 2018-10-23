@@ -108,18 +108,18 @@ public class RegisterActivity extends BaseActivity {
         if (null != bundle) {
             status = bundle.getString("status");
         }
-        if (status.equals("学生")){
+        if (status.equals("学生")) {
             idTv.setText("学号：");
             idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
             idEdt.setHint("请输入学号");
             gradeRl.setVisibility(View.VISIBLE);
-        }else if (status.equals("教师")){
+        } else if (status.equals("教师")) {
             idTv.setText("工号：");
             idEdt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(7)});
             idEdt.setHint("请输入工号");
             gradeRl.setVisibility(View.GONE);
         }
-        titleTv.setText(status+"登记");
+        titleTv.setText(status + "登记");
         facultySp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(faculty)));
         gradeSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[0])));
     }
@@ -139,7 +139,7 @@ public class RegisterActivity extends BaseActivity {
         sexRagroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (group.getCheckedRadioButtonId()){
+                switch (group.getCheckedRadioButtonId()) {
                     case R.id.radio_male:
                         sexStr = maleRabtn.getText().toString();
                         break;
@@ -180,9 +180,9 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 registerll.requestFocus();
-                if (idEdt.getText().toString().trim().equals("")||nameEdt.toString().trim().equals("")||pswEdt.toString().trim().equals("")){
-                    ToastUtils.show(RegisterActivity.this,"不可为空",Toast.LENGTH_LONG);
-                }else register();
+                if (idEdt.getText().toString().trim().equals("") || nameEdt.toString().trim().equals("") || pswEdt.toString().trim().equals("")) {
+                    ToastUtils.show(RegisterActivity.this, "不可为空", Toast.LENGTH_LONG);
+                } else register();
             }
         });
     }
@@ -190,20 +190,20 @@ public class RegisterActivity extends BaseActivity {
     /**
      * 对接登记接口
      */
-    private void register(){
-        Map<String,Object> map = new HashMap<>();
-        map.put("status",status);
-        map.put("id",idEdt.getText().toString());
-        map.put("psw",pswEdt.getText().toString());
-        map.put("name",nameEdt.getText().toString());
-        map.put("sex",sexStr);
-        map.put("dept",facultyStr);
-        map.put("grade",gradeStr);
+    private void register() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", status);
+        map.put("id", idEdt.getText().toString());
+        map.put("psw", pswEdt.getText().toString());
+        map.put("name", nameEdt.getText().toString());
+        map.put("sex", sexStr);
+        map.put("dept", facultyStr);
+        map.put("grade", gradeStr);
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.REGISTER)
+                .url(UrlValue.SERVICE + UrlValue.REGISTER)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -217,9 +217,9 @@ public class RegisterActivity extends BaseActivity {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     String msg = jsonObject.getString("msg");
                     Message message = new Message();
-                    if (msg.equals("ok")){
+                    if (msg.equals("ok")) {
                         message.what = UrlValue.MSG_OK;
-                    }else {
+                    } else {
                         RegisterActivity.this.message = jsonObject.getString("message");
                         message.what = UrlValue.MSG_ERROR;
                     }
@@ -234,7 +234,7 @@ public class RegisterActivity extends BaseActivity {
     /**
      * 开启线程处理登记成功与否
      */
-    private class MyHandler extends BaseHandler{
+    private class MyHandler extends BaseHandler {
 
         MyHandler(Activity activity) {
             super(activity);
@@ -242,13 +242,13 @@ public class RegisterActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(RegisterActivity.this,"登记成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(RegisterActivity.this, "登记成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(RegisterActivity.this,RegisterActivity.this.message, Toast.LENGTH_LONG);
+                    ToastUtils.show(RegisterActivity.this, RegisterActivity.this.message, Toast.LENGTH_LONG);
             }
         }
     }

@@ -29,9 +29,9 @@ public class StatusActivity extends BaseActivity {
         studentLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StatusActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(StatusActivity.this, RegisterActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("status","学生");
+                bundle.putString("status", "学生");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -39,9 +39,9 @@ public class StatusActivity extends BaseActivity {
         teacherLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StatusActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(StatusActivity.this, RegisterActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("status","教师");
+                bundle.putString("status", "教师");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

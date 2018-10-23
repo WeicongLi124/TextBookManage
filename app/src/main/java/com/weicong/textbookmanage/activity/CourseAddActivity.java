@@ -87,7 +87,7 @@ public class CourseAddActivity extends BaseActivity {
         typeRagroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (group.getCheckedRadioButtonId()){
+                switch (group.getCheckedRadioButtonId()) {
                     case R.id.course_radio_require:
                         typeStr = requireRabtn.getText().toString();
                         break;
@@ -100,13 +100,13 @@ public class CourseAddActivity extends BaseActivity {
         finishTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (courseNameEdt.getText().toString().equals("")||creditEdt.getText().toString().equals("")){
-                    ToastUtils.show(CourseAddActivity.this,"不可为空",Toast.LENGTH_LONG);
-                }else {
-                    int credit= Integer.parseInt(creditEdt.getText().toString());
-                    if (credit < 0||credit > 4){
-                        ToastUtils.show(CourseAddActivity.this,"学分范围：0~4",Toast.LENGTH_LONG);
-                    }else insertCourse(credit);
+                if (courseNameEdt.getText().toString().equals("") || creditEdt.getText().toString().equals("")) {
+                    ToastUtils.show(CourseAddActivity.this, "不可为空", Toast.LENGTH_LONG);
+                } else {
+                    int credit = Integer.parseInt(creditEdt.getText().toString());
+                    if (credit < 0 || credit > 4) {
+                        ToastUtils.show(CourseAddActivity.this, "学分范围：0~4", Toast.LENGTH_LONG);
+                    } else insertCourse(credit);
                 }
             }
         });
@@ -115,16 +115,16 @@ public class CourseAddActivity extends BaseActivity {
     /**
      * 添加课程信息
      */
-    private void insertCourse(int credit){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("courseName",courseNameEdt.getText().toString());
-        map.put("type",typeStr);
-        map.put("credit",credit);
+    private void insertCourse(int credit) {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("courseName", courseNameEdt.getText().toString());
+        map.put("type", typeStr);
+        map.put("credit", credit);
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.INSERT_COURSE)
+                .url(UrlValue.SERVICE + UrlValue.INSERT_COURSE)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -142,7 +142,7 @@ public class CourseAddActivity extends BaseActivity {
                     Message message = new Message();
                     if (msg.equals("ok")) {
                         message.what = UrlValue.MSG_OK;
-                    }else {
+                    } else {
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
@@ -154,7 +154,7 @@ public class CourseAddActivity extends BaseActivity {
         });
     }
 
-    private class MyHandler extends BaseHandler{
+    private class MyHandler extends BaseHandler {
 
         public MyHandler(Activity activity) {
             super(activity);
@@ -162,13 +162,13 @@ public class CourseAddActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(CourseAddActivity.this,"录入成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(CourseAddActivity.this, "录入成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(CourseAddActivity.this,"此班级已存在此课程", Toast.LENGTH_LONG);
+                    ToastUtils.show(CourseAddActivity.this, "此班级已存在此课程", Toast.LENGTH_LONG);
                     break;
             }
 

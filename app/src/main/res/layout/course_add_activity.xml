@@ -1,134 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/course_add_ll"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/course_add_title_tv"
-        android:text="课程录入"
-        android:textSize="30sp"
-        android:textColor="@color/mainColor"
-        android:layout_marginTop="-50dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:text="课程录入"
+        android:textColor="@color/mainColor"
+        android:textSize="30sp" />
 
     <RelativeLayout
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/course_add_name_edt"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="课程："
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="课程："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/course_add_credit_edt"
-            android:textSize="16sp"
-            android:textColor="#ff0000"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:inputType="number"
             android:maxLength="1"
             android:maxLines="1"
-            android:inputType="number"
-            android:background="@drawable/login_border"
             android:paddingStart="60dp"
-            android:paddingEnd="10dp"
             android:paddingTop="12dp"
+            android:paddingEnd="10dp"
             android:paddingBottom="12dp"
-            android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:textColor="#ff0000"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="学分："
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="学分："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <RadioGroup
             android:id="@+id/course_add_type_rg"
             android:layout_width="280dp"
             android:layout_height="45dp"
+            android:orientation="horizontal"
             android:paddingStart="60dp"
-            android:weightSum="2"
-            android:orientation="horizontal" >
+            android:weightSum="2">
+
             <RadioButton
                 android:id="@+id/course_radio_require"
-                android:text="必修"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:checked="true" />
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="必修" />
+
             <RadioButton
                 android:id="@+id/course_radio_elect"
-                android:text="选修"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:text="选修" />
         </RadioGroup>
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="类型："
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="类型："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <TextView
         android:id="@+id/course_add_finish_btn"
-        android:text="完成"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:focusable="true"
-        android:clickable="true"
-        android:background="@drawable/btn_bg"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="-100dp"
-        android:layout_width="80dp"
-        android:layout_height="40dp" />
+        android:background="@drawable/btn_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="完成"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

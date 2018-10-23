@@ -96,7 +96,7 @@ public class OrderAddActivity extends BaseActivity {
         submitBtn = findViewById(R.id.order_add_submit_btn);
 
         teacherTv.setText(User.USER_NAME);
-        totalTv.setText(total+"¥");
+        totalTv.setText(total + "¥");
         facultySp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(faculty)));
         gradeSp.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Arrays.asList(grade[0])));
         getBookList();
@@ -152,9 +152,9 @@ public class OrderAddActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 bookIndex = position;
                 bookId = bookBeanList.get(position).getBookISBN();
-                priceTv.setText(bookBeanList.get(position).getBookPrice()+"¥");
+                priceTv.setText(bookBeanList.get(position).getBookPrice() + "¥");
                 total = number * bookBeanList.get(bookIndex).getBookPrice();
-                totalTv.setText(total+"¥");
+                totalTv.setText(total + "¥");
             }
 
             @Override
@@ -171,11 +171,11 @@ public class OrderAddActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (numbersEdt.getText().toString().equals("")){
+                if (numbersEdt.getText().toString().equals("")) {
                     number = 0;
-                }else number = Integer.parseInt(numbersEdt.getText().toString());
+                } else number = Integer.parseInt(numbersEdt.getText().toString());
                 total = number * bookBeanList.get(bookIndex).getBookPrice();
-                totalTv.setText(total+"¥");
+                totalTv.setText(total + "¥");
             }
 
             @Override
@@ -186,9 +186,9 @@ public class OrderAddActivity extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (number == 0){
-                    ToastUtils.show(OrderAddActivity.this,"数量不可为空",Toast.LENGTH_LONG);
-                }else insertOrder();
+                if (number == 0) {
+                    ToastUtils.show(OrderAddActivity.this, "数量不可为空", Toast.LENGTH_LONG);
+                } else insertOrder();
             }
         });
     }
@@ -196,14 +196,14 @@ public class OrderAddActivity extends BaseActivity {
     /**
      * 获取书名
      */
-    private void getBookList(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("keywords","");
+    private void getBookList() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("keywords", "");
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.SEARCH_BOOK)
+                .url(UrlValue.SERVICE + UrlValue.SEARCH_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -219,16 +219,17 @@ public class OrderAddActivity extends BaseActivity {
                     Gson gson1 = new Gson();
                     bookBeanList = new ArrayList<>();
                     bookBeanList = gson1.fromJson(jsonObject.getString("list"),
-                            new TypeToken<List<BookBean>>(){}.getType());
+                            new TypeToken<List<BookBean>>() {
+                            }.getType());
                     bookList = new ArrayList<>();
-                    for (int i = 0; i < bookBeanList.size(); i++){
-                        bookList.add("《"+bookBeanList.get(i).getBookName()+"》");
+                    for (int i = 0; i < bookBeanList.size(); i++) {
+                        bookList.add("《" + bookBeanList.get(i).getBookName() + "》");
                     }
                     bookId = bookBeanList.get(0).getBookISBN();
                     Message message = new Message();
                     if (jsonObject.getString("msg").equals("ok"))
                         message.what = GET_BOOK_LIST;
-                    else{
+                    else {
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
@@ -239,14 +240,14 @@ public class OrderAddActivity extends BaseActivity {
         });
     }
 
-    private void getCourseList(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("keywords","");
+    private void getCourseList() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("keywords", "");
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.SEARCH_COURSE)
+                .url(UrlValue.SERVICE + UrlValue.SEARCH_COURSE)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -271,11 +272,11 @@ public class OrderAddActivity extends BaseActivity {
                     Message message = new Message();
                     if (jsonObject.getString("msg").equals("ok"))
                         message.what = GET_COURSE_lIST;
-                    else{
+                    else {
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
-                }catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -285,19 +286,19 @@ public class OrderAddActivity extends BaseActivity {
     /**
      * 添加订单信息
      */
-    private void insertOrder(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("bookId",bookId);
-        map.put("teacherId",User.USER_ID);
-        map.put("courseId",courseId);
-        map.put("grade",gradeStr);
-        map.put("total",total);
+    private void insertOrder() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("bookId", bookId);
+        map.put("teacherId", User.USER_ID);
+        map.put("courseId", courseId);
+        map.put("grade", gradeStr);
+        map.put("total", total);
         map.put("number", number);
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.INSERT_ORDER)
+                .url(UrlValue.SERVICE + UrlValue.INSERT_ORDER)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -315,7 +316,7 @@ public class OrderAddActivity extends BaseActivity {
                     Message message = new Message();
                     if (msg.equals("ok")) {
                         message.what = UrlValue.MSG_OK;
-                    }else {
+                    } else {
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
@@ -328,7 +329,8 @@ public class OrderAddActivity extends BaseActivity {
 
     private static final int GET_BOOK_LIST = 2;
     private static final int GET_COURSE_lIST = 3;
-    class MyHandler extends BaseHandler{
+
+    class MyHandler extends BaseHandler {
 
         public MyHandler(Activity activity) {
             super(activity);
@@ -336,16 +338,16 @@ public class OrderAddActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(OrderAddActivity.this,"征订成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(OrderAddActivity.this, "征订成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(OrderAddActivity.this,OrderAddActivity.this.message, Toast.LENGTH_LONG);
+                    ToastUtils.show(OrderAddActivity.this, OrderAddActivity.this.message, Toast.LENGTH_LONG);
                     break;
                 case GET_BOOK_LIST:
-                    bookSp.setAdapter(new ArrayAdapter(OrderAddActivity.this, android.R.layout.simple_spinner_dropdown_item,bookList));
+                    bookSp.setAdapter(new ArrayAdapter(OrderAddActivity.this, android.R.layout.simple_spinner_dropdown_item, bookList));
                     break;
                 case GET_COURSE_lIST:
                     courseSp.setAdapter(new ArrayAdapter(OrderAddActivity.this, android.R.layout.simple_spinner_dropdown_item, courseList));

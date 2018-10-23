@@ -1,194 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/book_add_ll"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/book_add_title_tv"
-        android:text="教材录入"
-        android:textSize="30sp"
-        android:textColor="@color/mainColor"
-        android:layout_marginTop="-50dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:text="教材录入"
+        android:textColor="@color/mainColor"
+        android:textSize="30sp" />
 
     <RelativeLayout
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/book_add_isbn_edt"
-            android:textSize="16sp"
-            android:hint="请输入ISBN号"
-            android:maxLines="1"
-            android:maxLength="13"
-            android:inputType="text"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:hint="请输入ISBN号"
+            android:inputType="text"
+            android:maxLength="13"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="ISBN："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="ISBN："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/book_add_name_edt"
-            android:textSize="16sp"
-            android:hint="请输入书名"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:hint="请输入书名"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="书名："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="书名："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/book_add_press_edt"
-            android:textSize="16sp"
-            android:hint="请输入出版社"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:hint="请输入出版社"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="出版社："
-                android:textSize="14sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="出版社："
+                android:textSize="14sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/course_add_grade_rl"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/book_add_author_edt"
-            android:textSize="16sp"
-            android:hint="请输入作者名"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:hint="请输入作者名"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="作者："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="作者："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/book_add_price_edt"
-            android:textSize="16sp"
-            android:hint="请输入书的单价"
-            android:maxLines="1"
-            android:inputType="text"
-            android:background="@drawable/login_border"
-            android:paddingStart="60dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:layout_width="280dp"
-            android:layout_height="45dp"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_border"
+            android:hint="请输入书的单价"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
             android:layout_width="60dp"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
             <TextView
-                android:text="价格："
-                android:textSize="16sp"
-                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="价格："
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 
     <TextView
         android:id="@+id/book_add_submit_btn"
-        android:text="完成"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:focusable="true"
-        android:clickable="true"
-        android:background="@drawable/btn_bg"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="-100dp"
-        android:layout_width="80dp"
-        android:layout_height="40dp" />
+        android:background="@drawable/btn_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="完成"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

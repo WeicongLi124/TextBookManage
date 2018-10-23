@@ -75,9 +75,9 @@ public class BookAddActivity extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isNull(isbnEdt)||isNull(nameEdt)||isNull(pressEdt)||isNull(authorEdt)||isNull(priceEdt)){
-                    ToastUtils.show(BookAddActivity.this,"不可留空！",Toast.LENGTH_LONG);
-                }else insertBook();
+                if (isNull(isbnEdt) || isNull(nameEdt) || isNull(pressEdt) || isNull(authorEdt) || isNull(priceEdt)) {
+                    ToastUtils.show(BookAddActivity.this, "不可留空！", Toast.LENGTH_LONG);
+                } else insertBook();
             }
         });
     }
@@ -85,18 +85,18 @@ public class BookAddActivity extends BaseActivity {
     /**
      * 添加教材信息
      */
-    private void insertBook(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("isbn",isbnEdt.getText().toString());
-        map.put("name",nameEdt.getText().toString());
-        map.put("press",pressEdt.getText().toString());
-        map.put("author",authorEdt.getText().toString());
-        map.put("price",Double.parseDouble(priceEdt.getText().toString()));
+    private void insertBook() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("isbn", isbnEdt.getText().toString());
+        map.put("name", nameEdt.getText().toString());
+        map.put("press", pressEdt.getText().toString());
+        map.put("author", authorEdt.getText().toString());
+        map.put("price", Double.parseDouble(priceEdt.getText().toString()));
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.INSERT_BOOK)
+                .url(UrlValue.SERVICE + UrlValue.INSERT_BOOK)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -114,7 +114,7 @@ public class BookAddActivity extends BaseActivity {
                     Message message = new Message();
                     if (msg.equals("ok")) {
                         message.what = UrlValue.MSG_OK;
-                    }else {
+                    } else {
                         message.what = UrlValue.MSG_ERROR;
                     }
                     handler.sendMessage(message);
@@ -127,13 +127,14 @@ public class BookAddActivity extends BaseActivity {
 
     /**
      * 判断输入是否为空
+     *
      * @param editText
      * @return
      */
-    private boolean isNull(EditText editText){
-        if (editText.getText().toString().trim().equals("")){
+    private boolean isNull(EditText editText) {
+        if (editText.getText().toString().trim().equals("")) {
             return true;
-        }else return false;
+        } else return false;
     }
 
     private class MyHandler extends BaseHandler {
@@ -144,13 +145,13 @@ public class BookAddActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_OK:
-                    ToastUtils.show(BookAddActivity.this,"录入成功！", Toast.LENGTH_LONG);
+                    ToastUtils.show(BookAddActivity.this, "录入成功！", Toast.LENGTH_LONG);
                     finish();
                     break;
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(BookAddActivity.this,"错误，请检查ISBN号", Toast.LENGTH_LONG);
+                    ToastUtils.show(BookAddActivity.this, "错误，请检查ISBN号", Toast.LENGTH_LONG);
                     break;
             }
 

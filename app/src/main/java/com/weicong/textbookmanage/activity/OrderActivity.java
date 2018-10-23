@@ -52,6 +52,7 @@ public class OrderActivity extends BaseActivity {
     private List<OrderBean> orderBeanList;
     private OrderAdapter orderAdapter;
     private MyHandler handler = new MyHandler(this);
+
     @Override
     protected int setLayout() {
         return R.layout.order_activity;
@@ -64,7 +65,7 @@ public class OrderActivity extends BaseActivity {
         orderLv = findViewById(R.id.order_lv);
         orderLv.setDividerHeight(0);
         addBtn = findViewById(R.id.order_add_btn);
-        if (User.USER_STATUS.equals("学生")){
+        if (User.USER_STATUS.equals("学生")) {
             addBtn.setVisibility(View.GONE);
         }
         searchOrder();
@@ -83,7 +84,7 @@ public class OrderActivity extends BaseActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpToActivity(OrderActivity.this,OrderAddActivity.class);
+                jumpToActivity(OrderActivity.this, OrderAddActivity.class);
             }
         });
         searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,14 +98,14 @@ public class OrderActivity extends BaseActivity {
     /**
      * 获取订单信息
      */
-    private void searchOrder(){
-        Map<Object,Object> map = new HashMap<>();
-        map.put("keywords",searchEdt.getText().toString());
+    private void searchOrder() {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("keywords", searchEdt.getText().toString());
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING),gson.toJson(map));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(UrlValue.ENCODING), gson.toJson(map));
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(UrlValue.SERVICE+UrlValue.SEARCH_ORDER)
+                .url(UrlValue.SERVICE + UrlValue.SEARCH_ORDER)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -120,7 +121,8 @@ public class OrderActivity extends BaseActivity {
                     Gson gson1 = new Gson();
                     orderBeanList = new ArrayList<>();
                     orderBeanList = gson1.fromJson(jsonObject.getString("list"),
-                            new TypeToken<List<OrderBean>>(){}.getType());
+                            new TypeToken<List<OrderBean>>() {
+                            }.getType());
                     Message message = new Message();
                     if (jsonObject.getString("msg").equals("ok"))
                         message.what = UrlValue.MSG_OK;
@@ -139,7 +141,7 @@ public class OrderActivity extends BaseActivity {
         searchOrder();
     }
 
-    class MyHandler extends BaseHandler{
+    class MyHandler extends BaseHandler {
 
 
         public MyHandler(Activity activity) {
@@ -148,12 +150,12 @@ public class OrderActivity extends BaseActivity {
 
         @Override
         public void handleMessage(Message message, int what) {
-            switch (what){
+            switch (what) {
                 case UrlValue.MSG_ERROR:
-                    ToastUtils.show(OrderActivity.this,"操作失败！", Toast.LENGTH_LONG);
+                    ToastUtils.show(OrderActivity.this, "操作失败！", Toast.LENGTH_LONG);
                     break;
                 case UrlValue.MSG_OK:
-                    orderAdapter = new OrderAdapter(OrderActivity.this,orderBeanList);
+                    orderAdapter = new OrderAdapter(OrderActivity.this, orderBeanList);
                     orderLv.setAdapter(orderAdapter);
                     break;
             }
